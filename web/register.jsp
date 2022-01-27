@@ -1,77 +1,90 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
+<link href="css/bootsnipp.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="css/font-awesome.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="css/login.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login Page</title>
+        <!--Made with love by Mutiullah Samim -->
 
-<div class="view full-page-intro" style="background-image: url('https://www.google.com.np/imgres?imgurl=https%3A%2F%2Fwww.w3schools.com%2Fw3css%2Fimg_lights.jpg&imgrefurl=https%3A%2F%2Fwww.w3schools.com%2Fw3css%2Fw3css_images.asp&docid=R0KnAtfyBDsyiM&tbnid=kwgHAQqTiLQXLM%3A&vet=10ahUKEwj5z9nr277bAhWBbX0KHZzyAS8QMwitASgBMAE..i&w=600&h=400&bih=702&biw=1366&q=image&ved=0ahUKEwj5z9nr277bAhWBbX0KHZzyAS8QMwitASgBMAE&iact=mrc&uact=8'); background-repeat: no-repeat; background-size: cover;">
-    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+        <!--Bootsrap 4 CDN-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <!--Fontawesome CDN-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+        <!--Custom styles-->
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
         <div class="container">
-            <div class="row wow fadeIn">
-                <div class="col-md-6 mb-4 white-text text-center text-md-left">
-                    <h1 class="display-4 font-weight-bold">Sign UP</h1>
-                    <hr class="hr-light">
-                </div>
-                <div class="col-md-6 col-xl-5 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <form>
-                                <p class="h4 text-center mb-4">Sign up</p>
-                                <div class="md-form">
-                                    <i class="fa fa-user prefix grey-text"></i>
-                                    <input type="text" id="materialFormRegisterNameEx" class="form-control">
-                                    <label for="materialFormRegisterNameEx">Your name</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-envelope prefix grey-text"></i>
-                                    <input type="email" id="materialFormRegisterEmailEx" class="form-control">
-                                    <label for="materialFormRegisterEmailEx">Your email</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-user prefix grey-text"></i>
-                                    <input type="text" id="materialFormRegisterCityEx" class="form-control">
-                                    <label for="materialFormRegisterCityEx">Your city</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-user prefix grey-text"></i>
-                                    <input type="text" id="materialFormRegisterCountryEx" class="form-control">
-                                    <label for="materialFormRegisterCountryEx">Your country</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-exclamation-triangle prefix grey-text"></i>
-                                    <input type="email" id="materialFormRegisterConfirmEx" class="form-control">
-                                    <label for="materialFormRegisterConfirmEx">Confirm your email</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-lock prefix grey-text"></i>
-                                    <input type="password" id="materialFormRegisterPasswordEx" class="form-control">
-                                    <label for="materialFormRegisterPasswordEx">Your password</label>
-                                </div>
-
-                                <div class="text-center mt-4">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#myModal">Register</button>
-                                    <div class="modal fade" id="myModal" role="dialog">
-                                        <div class="modal-dialog"> 
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">OOPS!</h4>
-                                                    <button type="button" class="close" data-dismiss="modal">×</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Connection ERROR.........!</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </form> 
+            <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Sign Up</h3>
+                        <div class="d-flex justify-content-end social_icon">
+                            <span><i class="fab fa-facebook-square"></i></span>
+                            <span><i class="fab fa-google-plus-square"></i></span>
+                            <span><i class="fab fa-twitter-square"></i></span>
                         </div>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="User Name">
+
+                            </div>
+                            <br>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="Password">
+                            </div>
+                            <br>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="E-mail">
+                            </div>
+                            <br>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Mobile Number">
+                            </div>
+                            <br>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="City">
+                            </div>
+                            <br>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-flag" aria-hidden="true"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Country">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="submit" value="Register" class="btn float-right login_btn">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
+    </body>
+</html>

@@ -29,13 +29,7 @@
 
 
 
-        <div class="navbar-nav">
-            <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="#">
-                    Items in cart  <span id="result"></span>  <i class="fa fa-shopping-cart" style="font-size:15px"></i>  ||   View Cart
-                </a>                    
-            </div>
-        </div>
+       
         <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="login.jsp" role="button">
                 Sign-Out <i class="fas fa-sign-in-alt"></i>

@@ -48,6 +48,7 @@
                                 <th scope="col">Product Id</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Product Make</th>
+                                <th scope="col">Product Specification</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Availability</th>
                                 <th scope="col">Product Image</th>
@@ -62,6 +63,7 @@
                                     <td><c:out value="${products.getProductId()}"></c:out></td>
                                 <td><c:out value="${products.getProductName()}"></c:out></td>
                                 <td><c:out value="${products.getProductMake()}"></c:out></td>
+                                <td><c:out value="${products.getProductSpecification()}"></c:out></td>
                                 <td><i class="fa fa-inr"></i><c:out value="${products.getPrice()}"></c:out></td>
                                 <td><c:out value="${products.getAvailability()}"></c:out></td>
                                 <td><c:out value="${products.getproductImage()}"></c:out></td>

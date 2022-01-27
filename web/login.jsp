@@ -58,7 +58,7 @@
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
-                                    <h4>Don't have an account?<a href="#">Sign Up</a></h4>
+                                    <h4>Don't have an account?<a href="register.jsp">Sign Up</a></h4>
 				</div>
 				<div class="d-flex justify-content-center">
                                     <h4><a href="#">Forgot your password?</a></h4>
