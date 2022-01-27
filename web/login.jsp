@@ -34,19 +34,19 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form>
+                            <form action="login" method="post">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="username">
+                                            <input type="email" class="form-control" placeholder="User Email" name="userEmail" required>
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password">
+                                            <input type="password" class="form-control" placeholder="password" name="password" required>
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
@@ -58,10 +58,10 @@
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="#">Sign Up</a>
+                                    <h4>Don't have an account?<a href="#">Sign Up</a></h4>
 				</div>
 				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
+                                    <h4><a href="#">Forgot your password?</a></h4>
 				</div>
 			</div>
 		</div>
