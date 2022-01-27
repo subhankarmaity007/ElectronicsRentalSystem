@@ -6,5 +6,17 @@
     <!---<include file="example.xml"/>-->
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
+        
+        <action name="report" class="com.exavalu.ers.actions.AdminOrderAction">
+            <result name="REPORT">/adminOrders.jsp</result>
+        </action>
+        
+        
+        
+         
+        
+        
+        
+        
     </package>
 </struts>

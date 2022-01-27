@@ -40,13 +40,13 @@
                                         <!-- Add icons to the links using the .nav-icon class
                                              with font-awesome or any other icon font library -->
                                          <li class="nav-item">
-                                                    <a href="customers.jsp" class="nav-link">
+                                                    <a href="customers.jsp" class="nav-link menu-open">
                                                         <i class="fas fa-users nav-icon" style="color:white"></i>
                                                         <p>Customers</p>
                                                     </a>
                                                 </li>
-                                        <li class="nav-item menu-open">
-                                            <a href="adminOrders.jsp" class="nav-link active">
+                                        <li class="nav-item ">
+                                            <a href="report" class="nav-link active">
                                                 <i class="nav-icon fas fa-shopping-cart" style="color:white"></i>
                                                 <p>
                                                     Orders

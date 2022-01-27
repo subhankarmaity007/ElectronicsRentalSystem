@@ -6,7 +6,7 @@
         <title>Admin Orders</title>
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        
+
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
         <!-- Google Font: Source Sans Pro -->
@@ -40,36 +40,79 @@
 
                 <!-- /.content-header -->
 
-              
-                <!-- /.content -->
-            </div
-            <jsp:include page="sidebar.jsp" />
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table m-0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Product Id</th>
+                                    <th>User Id</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Quantity</th>
+                                    <th>Actions</th>
 
-            <jsp:include page="footer.jsp" />
 
-        </div>
-            
-             <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.js"></script>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <s:iterator value="orderList">
+                                    <tr>
+                                        <td><s:property value="orderId" /></td>
+                                        <td><s:property value="productId" /></td>
+                                        <td><s:property value="userId" /></td>
+                                        <td><s:property value="startDate" /></td>
+                                        <td><s:property value="endDate" /></td>
+                                        <td><s:property value="quantity" /></td>
+                                          
+                                        <td>
+                                            <a href="updatedetails.action?submitType=updatedata&userName=<s:property value="userName"/>">
+                                                <button class="button-update">Update</button>
+                                            </a>
+                                            <a href="deleterecord.action?userName=<s:property value="userName"/>">
+                                                <button class="button-delete">Delete</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </s:iterator>
 
-        <!-- PAGE PLUGINS -->
-        <!-- jQuery Mapael -->
-        <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-        <script src="plugins/raphael/raphael.min.js"></script>
-        <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-        <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-        <!-- ChartJS -->
-        <script src="plugins/chart.js/Chart.min.js"></script>
 
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="dist/js/pages/dashboard2.js"></script>
-        
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <!-- /.content -->
+                </div
+                <jsp:include page="sidebar.jsp" />
+
+                <jsp:include page="footer.jsp" />
+
+            </div>
+
+            <!-- jQuery -->
+            <script src="plugins/jquery/jquery.min.js"></script>
+            <!-- Bootstrap -->
+            <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- overlayScrollbars -->
+            <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="dist/js/adminlte.js"></script>
+
+            <!-- PAGE PLUGINS -->
+            <!-- jQuery Mapael -->
+            <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+            <script src="plugins/raphael/raphael.min.js"></script>
+            <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+            <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+            <!-- ChartJS -->
+            <script src="plugins/chart.js/Chart.min.js"></script>
+
+            <!-- AdminLTE for demo purposes -->
+            <script src="dist/js/demo.js"></script>
+            <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+            <script src="dist/js/pages/dashboard2.js"></script>
+
     </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
