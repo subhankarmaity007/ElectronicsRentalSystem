@@ -6,7 +6,7 @@
         <title>Admin Products</title>
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        
+
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
         <!-- Google Font: Source Sans Pro -->
@@ -39,38 +39,72 @@
                 <!-- Content Header (Page header) -->
 
                 <!-- /.content-header -->
+                <h2>Products List</h2>
+                <font style="color: #a52834"><c:out value="${requestScope.MSG}"></c:out></font>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product Id</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Product Make</th>
+                                <th scope="col">Product Specification</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Availability</th>
+                                <th scope="col">Product Image</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <c:set var = "netProducts" scope = "request" value = "${requestScope.products.size()}"/>
+                        <c:if test='${netProducts > 0}'>
+                            <c:forEach items="${requestScope.products}" var="product">
+                                <tr>
+                                    <td><c:out value="${products.getProductId()}"></c:out></td>
+                                <td><c:out value="${products.getProductName()}"></c:out></td>
+                                <td><c:out value="${products.getProductMake()}"></c:out></td>
+                                <td><c:out value="${products.getProductSpecification()}"></c:out></td>
+                                <td><i class="fa fa-inr"></i><c:out value="${products.getPrice()}"></c:out></td>
+                                <td><c:out value="${products.getAvailability()}"></c:out></td>
+                                <td><c:out value="${products.getproductImage()}"></c:out></td>
+                                <td><a class="fa fa-edit"  href='EditProduct?productId=<c:out value="${products.getProductId()}"></c:out>'></a>
+                                    <a class="fa fa-archive" href='ArchiveProduct?productId=<c:out value="${products.getProductId()}"></c:out>'></a>
+                                </td>
+                                </tr>
+                            </c:forEach>
+                        </c:if>
+                        </tbody>
 
-               
-               
-                <!-- /.content -->
-            </div
-            <jsp:include page="sidebar.jsp" />
 
-            <jsp:include page="footer.jsp" />
+                        <!-- /.content -->
+                </div
+                <jsp:include page="sidebar.jsp" />
 
-        </div>
-            
-             <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.js"></script>
+                <jsp:include page="footer.jsp" />
 
-        <!-- PAGE PLUGINS -->
-        <!-- jQuery Mapael -->
-        <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-        <script src="plugins/raphael/raphael.min.js"></script>
-        <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-        <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-        <!-- ChartJS -->
-        <script src="plugins/chart.js/Chart.min.js"></script>
+            </div>
 
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="dist/js/pages/dashboard2.js"></script>
-        
+            <!-- jQuery -->
+            <script src="plugins/jquery/jquery.min.js"></script>
+            <!-- Bootstrap -->
+            <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- overlayScrollbars -->
+            <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="dist/js/adminlte.js"></script>
+
+            <!-- PAGE PLUGINS -->
+            <!-- jQuery Mapael -->
+            <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+            <script src="plugins/raphael/raphael.min.js"></script>
+            <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+            <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+            <!-- ChartJS -->
+            <script src="plugins/chart.js/Chart.min.js"></script>
+
+            <!-- AdminLTE for demo purposes -->
+            <script src="dist/js/demo.js"></script>
+            <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+            <script src="dist/js/pages/dashboard2.js"></script>
+
     </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
