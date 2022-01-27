@@ -14,6 +14,6 @@ public class Log4Message{
    public static void main(String[] args)throws IOException,SQLException{
         final Logger log = Logger.getLogger(Orders.class.getName());
       log.debug("Hello this is new debug message");
-      log.info("A new file has been added by Ankita");
+      log.info("A new file has been added by Deep");
    }
 }
