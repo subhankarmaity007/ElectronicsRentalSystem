@@ -1,4 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+
 
 
 
@@ -27,11 +30,18 @@
 
 
 
+        <s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
+        <s:if test = "#role==1">
+             this is admin
+        </s:if>
+             <s:if test = "#role==2">
+             this is customer
+        </s:if>
 
 
-       
         <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="login.jsp" role="button">
+            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="logout" role="button">
+
                 Sign-Out <i class="fas fa-sign-in-alt"></i>
             </a>
         </li>

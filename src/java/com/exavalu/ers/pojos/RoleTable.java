@@ -9,7 +9,7 @@ package com.exavalu.ers.pojos;
  *
  * @author Ankush Saha
  */
-public class role_table {
+public class RoleTable {
     
     private int roleId;
     private String roleName;
