@@ -18,7 +18,9 @@
             
         </action> 
 
-       
+       <action name="report" class="com.exavalu.ers.actions.ProductAction" method="productReport">
+            <result name="REPORTPRODUCT">/adminProducts.jsp</result>
+        </action>
         
     </package>
 </struts>

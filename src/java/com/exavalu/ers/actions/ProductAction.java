@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.exavalu.ers.action;
+package com.exavalu.ers.actions;
 
 import com.exavalu.ers.pojos.Products;
+import com.exavalu.ers.services.ProductService;
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import struts2.test.dao.Admin;
 
 /**
  *
  * @author deepd
  */
-public class adminProductAction extends ActionSupport {
+public class ProductAction extends ActionSupport {
     private int productId;
     private String productName;
     private String productMake;
@@ -27,7 +27,7 @@ public class adminProductAction extends ActionSupport {
     private String productSpecification;
     private String msg = "";
 
-    private Admin admin = null;
+    private ProductService productService = null;
     private int ctr = 0;
     //private static long serialVersionUID = 6329394260276112660L;
     private ResultSet rs = null;
@@ -35,15 +35,15 @@ public class adminProductAction extends ActionSupport {
     private List<Products> productList = null;
     //private Admin admin = new Admin();
     private boolean noData = false;
-    private Admin dao = new Admin();
+    private ProductService dao = new ProductService();
     private String submitType;
     private String msg1;
     
     public String productReport() throws Exception {
-        setAdmin(new Admin());
+        setProductService(new ProductService());
         try {
             setProductList(new ArrayList<>());
-            setProductList(getAdmin().productreport());
+            setProductList(getProductService().productReport());
             
 
             if (!productList.isEmpty() ) {
@@ -186,17 +186,17 @@ public class adminProductAction extends ActionSupport {
     }
 
     /**
-     * @return the admin
+     * @return the productService
      */
-    public Admin getAdmin() {
-        return admin;
+    public ProductService getProductService() {
+        return productService;
     }
 
     /**
-     * @param admin the admin to set
+     * @param productService the productService to set
      */
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
 
     /**
@@ -211,20 +211,6 @@ public class adminProductAction extends ActionSupport {
      */
     public void setCtr(int ctr) {
         this.ctr = ctr;
-    }
-
-    /**
-     * @return the serialVersionUID
-     */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
     }
 
     /**
@@ -286,14 +272,14 @@ public class adminProductAction extends ActionSupport {
     /**
      * @return the dao
      */
-    public Admin getDao() {
+    public ProductService getDao() {
         return dao;
     }
 
     /**
      * @param dao the dao to set
      */
-    public void setDao(Admin dao) {
+    public void setDao(ProductService dao) {
         this.dao = dao;
     }
 
@@ -324,4 +310,6 @@ public class adminProductAction extends ActionSupport {
     public void setMsg1(String msg1) {
         this.msg1 = msg1;
     }
+
+   
 }

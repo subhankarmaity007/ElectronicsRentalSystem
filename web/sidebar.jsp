@@ -55,7 +55,7 @@
                                             </a>
                                            </li>
                                                 <li class="nav-item">
-                                                    <a href="adminProducts.jsp" class="nav-link">
+                                                    <a href="report" class="nav-link">
                                                         <i class="fas fa-desktop nav-icon" style="color:white"></i>
                                                         <p>Products</p>
                                                     </a>

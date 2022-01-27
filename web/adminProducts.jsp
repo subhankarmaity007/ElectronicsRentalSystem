@@ -40,7 +40,8 @@
 
                 <!-- /.content-header -->
                 <h2>Products List</h2>
-                <font style="color: #a52834"><c:out value="${requestScope.MSG}"></c:out></font>
+                <font style="color: #a52834">
+                </font>
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
                         <thead>
@@ -56,24 +57,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <c:set var = "netProducts" scope = "request" value = "${requestScope.products.size()}"/>
-                        <c:if test='${netProducts > 0}'>
-                            <c:forEach items="${requestScope.products}" var="product">
-                                <tr>
-                                    <td><c:out value="${products.getProductId()}"></c:out></td>
-                                <td><c:out value="${products.getProductName()}"></c:out></td>
-                                <td><c:out value="${products.getProductMake()}"></c:out></td>
-                                <td><c:out value="${products.getProductSpecification()}"></c:out></td>
-                                <td><i class="fa fa-inr"></i><c:out value="${products.getPrice()}"></c:out></td>
-                                <td><c:out value="${products.getAvailability()}"></c:out></td>
-                                <td><c:out value="${products.getproductImage()}"></c:out></td>
-                                <td><a class="fa fa-edit"  href='EditProduct?productId=<c:out value="${products.getProductId()}"></c:out>'></a>
-                                    <a class="fa fa-archive" href='ArchiveProduct?productId=<c:out value="${products.getProductId()}"></c:out>'></a>
-                                </td>
-                                </tr>
-                            </c:forEach>
-                        </c:if>
-                        </tbody>
+                                                       
+                                <s:iterator value="productList">
+                                    <tr>
+                                        <td><s:property value="productId" /></td>
+                                        <td><s:property value="productName" /></td>
+                                        <td><s:property value="productMake" /></td>
+                                        <td><s:property value="productPrice" /></td>
+                                        <td><s:property value="availability" /></td>
+                                        <td><s:property value="productSpecification" /></td>
+                                        <td>
+                                            <a  class="fa fa-edit" href="updateproductdetails.action?submitType=updateproductdata&productId=<s:property value="productId"/>">
+                                                <button class="button-update">Update</button>
+                                            </a>
+                                            <a class="fa fa-archive" href="deleteproductrecord.action?productId=<s:property value="productId"/>">
+                                                <button class="button-delete">Delete</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </s:iterator>
+                            </tbody>
 
 
                         <!-- /.content -->
