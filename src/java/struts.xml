@@ -5,6 +5,20 @@
 <struts>
     <!---<include file="example.xml"/>-->
     <!-- Configuration for the default package. -->
+    <!--<constant name="struts.action.excludePattern" value="/LoginServlet*,/Logout*"/>-->
+    
     <package name="default" extends="struts-default">
+        <action name="login" class="com.exavalu.ers.actions.UserAction" method="execute">
+            <result name="ADMIN">/adminIndex.jsp</result>
+            <result name="CUSTOMER">/customerIndex.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action> 
+        <action name="logout" class="com.exavalu.ers.actions.UserAction" method="logout">
+            <result name="LOGOUT">/login.jsp</result>
+            
+        </action> 
+
+       
+        
     </package>
 </struts>
