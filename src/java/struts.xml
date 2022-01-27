@@ -17,7 +17,12 @@
             <result name="LOGOUT">/login.jsp</result>
             
         </action> 
-
+        <action name="updateproductdetails" class="com.exavalu.ers.actions.ProductAction" method="productUpdate">
+            <result name="UPDATEPRODUCT">/adminProductsUpdate.jsp</result>
+        </action>
+        <action name="deleteproductrecord" class="com.exavalu.ers.actions.ProductAction" method="productDelete">
+            <result name="DELETEPRODUCT">/adminProductsDelete.jsp</result>
+        </action>
        <action name="report" class="com.exavalu.ers.actions.ProductAction" method="productReport">
             <result name="REPORTPRODUCT">/adminProducts.jsp</result>
         </action>

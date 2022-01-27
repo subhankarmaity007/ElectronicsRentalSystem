@@ -63,14 +63,15 @@
                                         <td><s:property value="productId" /></td>
                                         <td><s:property value="productName" /></td>
                                         <td><s:property value="productMake" /></td>
+                                        <td><s:property value="productSpecification" /></td>
                                         <td><s:property value="productPrice" /></td>
                                         <td><s:property value="availability" /></td>
-                                        <td><s:property value="productSpecification" /></td>
+                                        <td><s:property value="actions" /></td>
                                         <td>
-                                            <a  class="fa fa-edit" href="updateproductdetails.action?submitType=updateproductdata&productId=<s:property value="productId"/>">
+                                            <a  href="updateproductdetails.action?submitType=updateproductdata&productId=<s:property value="productId"/>">
                                                 <button class="button-update">Update</button>
                                             </a>
-                                            <a class="fa fa-archive" href="deleteproductrecord.action?productId=<s:property value="productId"/>">
+                                            <a  href="deleteproductrecord.action?productId=<s:property value="productId"/>">
                                                 <button class="button-delete">Delete</button>
                                             </a>
                                         </td>

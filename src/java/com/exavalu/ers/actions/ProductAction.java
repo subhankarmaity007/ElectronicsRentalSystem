@@ -5,7 +5,6 @@
  */
 package com.exavalu.ers.actions;
 
-
 import com.exavalu.ers.pojos.Products;
 import com.exavalu.ers.services.ProductService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -18,6 +17,7 @@ import java.util.List;
  * @author deepd
  */
 public class ProductAction extends ActionSupport {
+
     private int productId;
     private String productName;
     private String productMake;
@@ -30,7 +30,7 @@ public class ProductAction extends ActionSupport {
 
     private ProductService productService = null;
     private int ctr = 0;
-    //private static long serialVersionUID = 6329394260276112660L;
+    private static long serialVersionUID = 6329394260276112660L;
     private ResultSet rs = null;
     private Products product = null;
     private List<Products> productList = null;
@@ -39,17 +39,16 @@ public class ProductAction extends ActionSupport {
     private ProductService dao = new ProductService();
     private String submitType;
     private String msg1;
-    
+
     public String productReport() throws Exception {
         setProductService(new ProductService());
         try {
             setProductList(new ArrayList<>());
-            setProductList(getProductService().productReport());
-            
+            setProductList(getProductService().showAllProducts());
 
-            if (!productList.isEmpty() ) {
+            if (!productList.isEmpty()) {
                 setNoData(false);
-                System.out.println("Products retrieve = "+getProductList().size());
+                System.out.println("Products retrieve = " + getProductList().size());
                 System.out.println("setting nodata=false");
             } else {
                 setNoData(true);
@@ -59,6 +58,52 @@ public class ProductAction extends ActionSupport {
         }
         return "REPORTPRODUCT";
     }
+
+    public String productUpdate() throws Exception {
+        dao=new ProductService();
+        try {
+            if (submitType.equals("updateproductdata")) {
+                Products product = dao.fetchProductDetails(productId);
+                if (product != null) {
+                    productId = product.getProductId();
+                    productName = product.getProductName();
+                    productMake = product.getProductMake();
+                    //productSpecification = product.getProductSpecification();
+                    productPrice = product.getProductPrice();
+                    availability = product.getAvailability();
+                }
+            } else {
+                int i = dao.updateProduct(productId, productName, productMake, productPrice, availability);
+                if (i > 0) {
+                    msg = "Record Updated Successfuly";
+                } else {
+                    msg = "error";
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "UPDATEPRODUCT";
+    }
+    public String productDelete() throws Exception {
+        try {
+            int isDeleted = dao.deleteProductDetails(getProductId());
+            if (isDeleted > 0) {
+                setMsg1("Record deleted successfully");
+                System.out.println("Product Deleted");
+            } else {
+                setMsg1("Some error");
+                System.out.println("Some error");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "DELETEPRODUCT";
+}
+
+
 
     /**
      * @return the productId
@@ -215,6 +260,20 @@ public class ProductAction extends ActionSupport {
     }
 
     /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
+
+    /**
      * @return the rs
      */
     public ResultSet getRs() {
@@ -312,5 +371,4 @@ public class ProductAction extends ActionSupport {
         this.msg1 = msg1;
     }
 
-   
 }
