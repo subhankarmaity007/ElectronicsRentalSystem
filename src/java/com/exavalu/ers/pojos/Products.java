@@ -14,10 +14,11 @@ public class Products {
     private String productName;
     private String productMake;
     private double productPrice;
+    private double price;
     private int availability;
     private boolean status;
     private String productImage;
-
+    private String productSpecification;
     /**
      * @return the productId
      */
@@ -116,6 +117,34 @@ public class Products {
      */
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    /**
+     * @return the productSpecification
+     */
+    public String getProductSpecification() {
+        return productSpecification;
+    }
+
+    /**
+     * @param productSpecification the productSpecification to set
+     */
+    public void setProductSpecification(String productSpecification) {
+        this.productSpecification = productSpecification;
+    }
+
+    /**
+     * @return the price
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(double price) {
+        this.price = price;
     }
     
     

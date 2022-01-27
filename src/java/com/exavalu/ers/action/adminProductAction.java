@@ -216,16 +216,7 @@ public class adminProductAction extends ActionSupport {
     /**
      * @return the serialVersionUID
      */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
-    }
+    
 
     /**
      * @return the rs
