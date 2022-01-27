@@ -1,5 +1,7 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
 
 
 
@@ -27,6 +29,7 @@
 
 
 
+
         <s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
         <s:if test = "#role==1">
              this is admin
@@ -38,6 +41,7 @@
 
         <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="logout" role="button">
+
                 Sign-Out <i class="fas fa-sign-in-alt"></i>
             </a>
         </li>
@@ -51,8 +55,6 @@
 <!-- Content Wrapper. Contains page content -->
 
 <!-- ./wrapper -->
-
-
 
 
 
