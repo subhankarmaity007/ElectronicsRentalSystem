@@ -32,7 +32,7 @@
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" href="#">
-                    Items in cart <span id="result"></span>|| View Cart
+                    Items in cart  <span id="result"></span>  <i class="fa fa-shopping-cart" style="font-size:15px"></i>  ||   View Cart
                 </a>                    
             </div>
         </div>
