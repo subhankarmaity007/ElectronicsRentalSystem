@@ -23,7 +23,7 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  *
  */
-public class UserAction implements SessionAware {
+public class UserAction  implements SessionAware {
 
     private int userId;
     private String userName;
@@ -64,11 +64,14 @@ public class UserAction implements SessionAware {
         public String execute() throws ClassNotFoundException, IOException {
         
             User myUser = new User();
-            myUser.setUserEmail(getUserEmail());
-            myUser.setPassword(getPassword());
+            myUser.setUserEmail(userEmail);
+            myUser.setPassword(password);
+             System.out.println(userEmail);
+             String email=userEmail;
             
             User validuser = UserService.validateLoginCredentials(myUser);
-            if (getUserEmail().equals(validuser.getUserEmail())) {
+            System.out.println(validuser.getUserEmail());
+            if (validuser.isValidUser()) {
                 sessionMap.put("login", "true");
                 sessionMap.put("userEmail", validuser.getUserEmail());
                 sessionMap.put("roleId", validuser.getRoleId());
