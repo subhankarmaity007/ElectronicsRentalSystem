@@ -17,6 +17,11 @@
             <result name="LOGOUT">/login.jsp</result>
             
         </action> 
+        
+        <action name="productAdmin" class="com.exavalu.ers.actions.ProductAction" method="productReport">
+            <result name="REPORTPRODUCT">/adminProducts.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
 
        
         

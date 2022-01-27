@@ -3,7 +3,16 @@
 <html lang="en" style="height: auto;"><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin Products</title>
+        
+        <title>
+            <s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
+        <s:if test = "#role==1">
+                Admin Products
+            </s:if>
+                 <s:if test = "#role==2">
+                Customer Products
+            </s:if>
+                    </title>
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
@@ -35,7 +44,10 @@
                 <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" style="display: none;">
             </div>
             <jsp:include page="header.jsp" />
-            <div class="content-wrapper" style="min-height: 689px;">
+            <s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
+            <s:if test = "#role==1">
+                 <div class="content-wrapper" style="min-height: 689px;">               
+
                 <!-- Content Header (Page header) -->
 
                 <!-- /.content-header -->
@@ -51,60 +63,70 @@
                                 <th scope="col">Product Specification</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Availability</th>
-                                <th scope="col">Product Image</th>
+                                <!--<th scope="col">Product Image</th>-->
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        <c:set var = "netProducts" scope = "request" value = "${requestScope.products.size()}"/>
-                        <c:if test='${netProducts > 0}'>
-                            <c:forEach items="${requestScope.products}" var="product">
-                                <tr>
-                                    <td><c:out value="${products.getProductId()}"></c:out></td>
-                                <td><c:out value="${products.getProductName()}"></c:out></td>
-                                <td><c:out value="${products.getProductMake()}"></c:out></td>
-                                <td><c:out value="${products.getProductSpecification()}"></c:out></td>
-                                <td><i class="fa fa-inr"></i><c:out value="${products.getPrice()}"></c:out></td>
-                                <td><c:out value="${products.getAvailability()}"></c:out></td>
-                                <td><c:out value="${products.getproductImage()}"></c:out></td>
-                                <td><a class="fa fa-edit"  href='EditProduct?productId=<c:out value="${products.getProductId()}"></c:out>'></a>
-                                    <a class="fa fa-archive" href='ArchiveProduct?productId=<c:out value="${products.getProductId()}"></c:out>'></a>
-                                </td>
-                                </tr>
-                            </c:forEach>
-                        </c:if>
-                        </tbody>
+                </div>
+                <tbody>
+                    <s:iterator value="productList">
+                        <tr>
+                            <td><s:property value="productId" /></td>
+                            <td><s:property value="productName" /></td>
+                            <td><s:property value="productMake" /></td>
+                            <td><s:property value="productSpecification" /></td>
+                            <td><s:property value="productPrice" /></td>
+                            <td><s:property value="availability" /></td>
 
-
-                        <!-- /.content -->
-                </div
-                <jsp:include page="sidebar.jsp" />
-
-                <jsp:include page="footer.jsp" />
-
+                            <td>
+                                <a href="updateproduct.action?submitType=updatedata&productId=<s:property value="productId"/>">
+                                    <button class="button-update">Update</button>
+                                </a>
+                                <a href="deleterecord.action?productId=<s:property value="productId"/>">
+                                    <button class="button-delete">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                    </s:iterator>
+                </tbody>
+                </table>
             </div>
+            <!-- /.content -->
+        </div>
+            </s:if>
+            <s:if test = "#role==2">
+                <div class="content-wrapper" style="min-height: 689px;">   
+                <h1> this is customer</h1>
+                </div>
+            </s:if>
+           
+        <jsp:include page="sidebar.jsp" />
 
-            <!-- jQuery -->
-            <script src="plugins/jquery/jquery.min.js"></script>
-            <!-- Bootstrap -->
-            <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <!-- overlayScrollbars -->
-            <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-            <!-- AdminLTE App -->
-            <script src="dist/js/adminlte.js"></script>
+        <jsp:include page="footer.jsp" />
+    </div>
 
-            <!-- PAGE PLUGINS -->
-            <!-- jQuery Mapael -->
-            <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-            <script src="plugins/raphael/raphael.min.js"></script>
-            <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-            <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-            <!-- ChartJS -->
-            <script src="plugins/chart.js/Chart.min.js"></script>
 
-            <!-- AdminLTE for demo purposes -->
-            <script src="dist/js/demo.js"></script>
-            <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-            <script src="dist/js/pages/dashboard2.js"></script>
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
 
-    </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard2.js"></script>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
