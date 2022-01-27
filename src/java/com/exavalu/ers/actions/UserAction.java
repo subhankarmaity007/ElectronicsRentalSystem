@@ -5,17 +5,13 @@
  */
 package com.exavalu.ers.actions;
 
-import com.opensymphony.xwork2.ActionSupport;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 import com.exavalu.ers.pojos.User;
+import java.sql.ResultSet;
+import java.util.List;
+
 import com.exavalu.ers.services.UserService;
-import com.exavalu.ers.servlets.LoginServlet;
 import java.io.IOException;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -69,10 +65,10 @@ public class UserAction implements SessionAware {
             
             User validuser = UserService.validateLoginCredentials(myUser);
             if (getUserEmail().equals(validuser.getUserEmail())) {
-                sessionMap.put("login", "true");
-                sessionMap.put("userEmail", validuser.getUserEmail());
-                sessionMap.put("roleId", validuser.getRoleId());
-                       System.out.println(sessionMap.get("roleId"));  
+                getSessionMap().put("login", "true");
+                getSessionMap().put("userEmail", validuser.getUserEmail());
+                getSessionMap().put("roleId", validuser.getRoleId());
+                       System.out.println(getSessionMap().get("roleId"));  
 
                 if(validuser.getRoleId()==1)
                 {
@@ -209,6 +205,21 @@ public String deleteUser(){
         }
         return "DELETE";
 }*/
+
+    /**
+     * @return the userId
+     */
+    public int getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     /**
      * @return the userName
      */
@@ -221,6 +232,34 @@ public String deleteUser(){
      */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    /**
+     * @return the userMobileNo
+     */
+    public String getUserMobileNo() {
+        return userMobileNo;
+    }
+
+    /**
+     * @param userMobileNo the userMobileNo to set
+     */
+    public void setUserMobileNo(String userMobileNo) {
+        this.userMobileNo = userMobileNo;
+    }
+
+    /**
+     * @return the userEmail
+     */
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    /**
+     * @param userEmail the userEmail to set
+     */
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     /**
@@ -238,6 +277,62 @@ public String deleteUser(){
     }
 
     /**
+     * @return the city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city the city to set
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * @return the country
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * @param country the country to set
+     */
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    /**
+     * @return the status
+     */
+    public int getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the roleId
+     */
+    public int getRoleId() {
+        return roleId;
+    }
+
+    /**
+     * @param roleId the roleId to set
+     */
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    /**
      * @return the validUser
      */
     public boolean isValidUser() {
@@ -249,34 +344,6 @@ public String deleteUser(){
      */
     public void setValidUser(boolean validUser) {
         this.validUser = validUser;
-    }
-
-    /**
-     * @return the msg
-     */
-    public String getMsg() {
-        return msg;
-    }
-
-    /**
-     * @param msg the msg to set
-     */
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    /**
-     * @return the ctr
-     */
-    public int getCtr() {
-        return ctr;
-    }
-
-    /**
-     * @param ctr the ctr to set
-     */
-    public void setCtr(int ctr) {
-        this.ctr = ctr;
     }
 
     /**
@@ -350,115 +417,17 @@ public String deleteUser(){
     }
 
     /**
-     * @return the submitType
+     * @return the msg
      */
-    public String getSubmitType() {
-        return submitType;
+    public String getMsg() {
+        return msg;
     }
 
     /**
-     * @param submitType the submitType to set
+     * @param msg the msg to set
      */
-    public void setSubmitType(String submitType) {
-        this.submitType = submitType;
-    }
-
-    /**
-     * @return the userId
-     */
-    public int getUserId() {
-        return userId;
-    }
-
-    /**
-     * @param userId the userId to set
-     */
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    /**
-     * @return the userMobileNo
-     */
-    public String getUserMobileNo() {
-        return userMobileNo;
-    }
-
-    /**
-     * @param userMobileNo the userMobileNo to set
-     */
-    public void setUserMobileNo(String userMobileNo) {
-        this.userMobileNo = userMobileNo;
-    }
-
-    /**
-     * @return the userEmail
-     */
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    /**
-     * @param userEmail the userEmail to set
-     */
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    /**
-     * @return the city
-     */
-    public String getCity() {
-        return city;
-    }
-
-    /**
-     * @param city the city to set
-     */
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    /**
-     * @return the country
-     */
-    public String getCountry() {
-        return country;
-    }
-
-    /**
-     * @param country the country to set
-     */
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    /**
-     * @return the status
-     */
-    public int getStatus() {
-        return status;
-    }
-
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    /**
-     * @return the roleId
-     */
-    public int getRoleId() {
-        return roleId;
-    }
-
-    /**
-     * @param roleId the roleId to set
-     */
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     /**
@@ -476,6 +445,20 @@ public String deleteUser(){
     }
 
     /**
+     * @return the ctr
+     */
+    public int getCtr() {
+        return ctr;
+    }
+
+    /**
+     * @param ctr the ctr to set
+     */
+    public void setCtr(int ctr) {
+        this.ctr = ctr;
+    }
+
+    /**
      * @return the dao
      */
     public UserService getDao() {
@@ -487,6 +470,20 @@ public String deleteUser(){
      */
     public void setDao(UserService dao) {
         this.dao = dao;
+    }
+
+    /**
+     * @return the submitType
+     */
+    public String getSubmitType() {
+        return submitType;
+    }
+
+    /**
+     * @param submitType the submitType to set
+     */
+    public void setSubmitType(String submitType) {
+        this.submitType = submitType;
     }
 
     /**
@@ -502,5 +499,8 @@ public String deleteUser(){
     public void setSessionMap(SessionMap<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
     }
+
+    
+    
 
 }
