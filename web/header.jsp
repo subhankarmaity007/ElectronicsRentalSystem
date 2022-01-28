@@ -8,14 +8,14 @@
 
 
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-dark">
+<nav class="main-header navbar navbar-expand navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="adminIndex.jsp" class="nav-link">Home</a>
+            <a href="login" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
@@ -32,19 +32,28 @@
 
         <s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
         <s:if test = "#role==1">
-             this is admin
-        </s:if>
-             <s:if test = "#role==2">
-             this is customer
-        </s:if>
-
-
-        <li class="nav-item">
+             <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="logout" role="button">
 
                 Sign-Out <i class="fas fa-sign-in-alt"></i>
             </a>
         </li>
+        </s:if>
+             <s:if test = "#role==2">
+                  <li class="nav-item">
+            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="logout" role="button">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </li>
+              <li class="nav-item">
+            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="logout" role="button">
+                Sign-Out <i class="fas fa-sign-in-alt"></i>
+            </a>
+        </li>
+        </s:if>
+
+
+       
     </ul>
 </nav>
 <!-- /.navbar -->

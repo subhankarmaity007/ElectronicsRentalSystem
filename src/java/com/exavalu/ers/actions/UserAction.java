@@ -48,7 +48,7 @@ public class UserAction  implements SessionAware {
     private UserService dao = new UserService();
     private String submitType;
 
-    
+    boolean session=false;
 
    
 
@@ -62,12 +62,13 @@ public class UserAction  implements SessionAware {
         }
 
         public String execute() throws ClassNotFoundException, IOException {
-        
+        if(session==false){
+            session=true;
             User myUser = new User();
             myUser.setUserEmail(userEmail);
             myUser.setPassword(password);
              System.out.println(userEmail);
-             String email=userEmail;
+             
             
             User validuser = UserService.validateLoginCredentials(myUser);
             System.out.println(validuser.getUserEmail());
@@ -77,7 +78,7 @@ public class UserAction  implements SessionAware {
                 sessionMap.put("roleId", validuser.getRoleId());
                        System.out.println(sessionMap.get("roleId"));  
 
-                if(validuser.getRoleId()==1)
+                if((int)sessionMap.get("roleId")==1)
                 {
                      return "ADMIN";
                 }
@@ -88,13 +89,24 @@ public class UserAction  implements SessionAware {
                
             } 
             else {
+                if((int)sessionMap.get("roleId")==1)
+                {
+                     return "ADMIN";
+                }
+                else
+                {
+                    return "CUSTOMER";
+                }
+            }
+        }
+        else {
                 return "LOGIN";
             }
-        
         }
 
         public String logout() {
             if (getSessionMap() != null) {
+                session=false;
                 getSessionMap().invalidate();
             }
             return "LOGOUT";
