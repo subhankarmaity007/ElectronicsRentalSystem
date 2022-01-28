@@ -10,7 +10,7 @@
     <package name="default" extends="struts-default">
         <action name="login" class="com.exavalu.ers.actions.UserAction" method="execute">
             <result name="ADMIN">/adminIndex.jsp</result>
-            <result name="CUSTOMER">/customerIndex.jsp</result>
+            <result name="CUSTOMER">/adminIndex.jsp</result>
             <result name="LOGIN">/login.jsp</result>
         </action> 
         <action name="logout" class="com.exavalu.ers.actions.UserAction" method="logout">
