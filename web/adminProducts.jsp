@@ -107,11 +107,11 @@
                                 <td><s:property value="actions" /></td>
 
                                 <td>
-                                    <a class="btn btn-outline-success" href="updateproduct.action?submitType=updatedata&productId=<s:property value="productId"/>">
-                                        <button class="button-update">Update</button>
+                                    <a href="updateproduct.action?submitType=updatedata&productId=<s:property value="productId"/>">
+                                        <button type="button" class="btn btn-success">Update</button>
                                     </a>
-                                    <a class="btn btn-outline-danger" href="deleterecord.action?productId=<s:property value="productId"/>">
-                                        <button class="button-delete">Delete</button>
+                                    <a href="deleterecord.action?productId=<s:property value="productId"/>">
+                                        <button type="button" class="btn btn-danger">Delete</button>
                                     </a>
                                 </td>
                             </tr>
