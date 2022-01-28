@@ -26,7 +26,7 @@
             {
 
                 var qty = document.getElementById("Quantity_" + pid).value;
-                alert(qty);
+                alert("Product Id = "+qty);
                 $.ajax({
                     url: 'AddProductToCart',
                     method: 'POST',
