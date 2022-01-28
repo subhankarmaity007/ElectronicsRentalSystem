@@ -21,7 +21,8 @@
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
-<script>
+        <script>
+            
             function addProductToCart(pid)
             {
 
@@ -177,9 +178,11 @@
                             <td><s:property value="productPrice" /></td>
                             <td><s:property value="availability" /></td>
                             <td><s:property value="productImage" /></td>
-                            <td><input type="number" min="1" oninput="this.value=Math.abs(this.value)" max="<s:property value="availability" />" onkeyup="if(this.value<0){this.value= this.value * -1}" id='Quantity_<s:property value="productId"/>' value=""></td>
+                            <td><input type="number" min="1" oninput="this.value=Math.abs(this.value)" max="<s:property value="availability" />" onkeyup="if (this.value < 0) {
+                    this.value = this.value * -1
+                }" id='Quantity_<s:property value="productId"/>' value=""></td>
                             <td>
-                                <input type="button" value='Add to Cart' onclick="addProductToCart(<s:property value="productId"/>)">
+                                <input class="btn btn-outline-success" type="button" value='Add to Cart' onclick="addProductToCart(<s:property value="productId"/>)">
                             </td>
                         </tr>
                     </s:iterator>
