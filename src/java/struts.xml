@@ -13,6 +13,9 @@
             <result name="CUSTOMER">/adminIndex.jsp</result>
             <result name="LOGIN">/login.jsp</result>
         </action> 
+        <action name="registerUser" class="com.exavalu.ers.actions.UserAction" method="registerUser">
+            <result name="LOGIN">/login.jsp</result>
+        </action>
         <action name="logout" class="com.exavalu.ers.actions.UserAction" method="logout">
             <result name="LOGOUT">/login.jsp</result>
             

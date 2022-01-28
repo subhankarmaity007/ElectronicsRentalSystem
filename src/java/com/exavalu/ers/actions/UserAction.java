@@ -23,7 +23,7 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  *
  */
-public class UserAction  implements SessionAware {
+public class UserAction implements SessionAware {
 
     private int userId;
     private String userName;
@@ -48,71 +48,58 @@ public class UserAction  implements SessionAware {
     private UserService dao = new UserService();
     private String submitType;
 
-    boolean session=false;
+    boolean session = false;
 
-   
-
-       
-        private SessionMap<String, Object> sessionMap;
+    private SessionMap<String, Object> sessionMap;
 
 //getters and setters  
     @Override
-        public void setSession(Map<String, Object> map) {
-            setSessionMap((SessionMap<String, Object>) (SessionMap) map);
-        }
+    public void setSession(Map<String, Object> map) {
+        setSessionMap((SessionMap<String, Object>) (SessionMap) map);
+    }
 
-        public String execute() throws ClassNotFoundException, IOException {
-        if(session==false){
-            session=true;
+    public String execute() throws ClassNotFoundException, IOException {
+        
+        if (session == false) {
+            session = true;
             User myUser = new User();
             myUser.setUserEmail(userEmail);
             myUser.setPassword(password);
-             System.out.println(userEmail);
-             
-            
+            System.out.println(userEmail);
+
             User validuser = UserService.validateLoginCredentials(myUser);
             System.out.println(validuser.getUserEmail());
             if (validuser.isValidUser()) {
                 sessionMap.put("login", "true");
                 sessionMap.put("userEmail", validuser.getUserEmail());
                 sessionMap.put("roleId", validuser.getRoleId());
-                       System.out.println(sessionMap.get("roleId"));  
+                System.out.println(sessionMap.get("roleId"));
 
-                if((int)sessionMap.get("roleId")==1)
-                {
-                     return "ADMIN";
-                }
-                else
-                {
+                if ((int) sessionMap.get("roleId") == 1) {
+                    return "ADMIN";
+                } else {
                     return "CUSTOMER";
                 }
-               
-            } 
-            else {
-                if((int)sessionMap.get("roleId")==1)
-                {
-                     return "ADMIN";
-                }
-                else
-                {
+
+            } else {
+                if ((int) sessionMap.get("roleId") == 1) {
+                    return "ADMIN";
+                } else {
                     return "CUSTOMER";
                 }
             }
+        } else {
+            return "LOGIN";
         }
-        else {
-                return "LOGIN";
-            }
-        }
+    }
 
-        public String logout() {
-            if (getSessionMap() != null) {
-                session=false;
-                getSessionMap().invalidate();
-            }
-            return "LOGOUT";
+    public String logout() {
+        if (getSessionMap() != null) {
+            session = false;
+            getSessionMap().invalidate();
         }
-
-    
+        return "LOGOUT";
+    }
 
     // call a java service in my server or external server.
     /*       User myUser = new User();
@@ -142,25 +129,25 @@ public class UserAction  implements SessionAware {
                     return "LOGIN";
                 }
 }*/
-
- /*public String registerUser(){
-   
-    
-        setAdmin(new Admin());
-
-        try {
-            setCtr(getAdmin().registerUser(getUserName(), getPassword(), getFirstName(), getLastName(), getEmail(), getPhoneNumber()));
-            if (getCtr() > 0) {
-                setMsg("Registration Successfull");
-            } else {
-                setMsg("Some error");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public String registerUser() throws Exception {
+        setCtr(dao.addUser(userName, userMobileNo, userEmail, password, city, country));
+        if (getCtr() > 0) {
+            setMsg("Registration Successfull");
+        } else {
+            setMsg("Some error");
         }
-        return "REGISTER";
-    }
+        return "LOGIN";
 
+    }
+    /*
+        setUserName(userName);
+        setUserMobileNo(userMobileNo);
+        setUserEmail(userEmail);
+        setPassword(password);
+        setCity(password);
+        setCountry(city);
+    */
+    /*
 public String reportUser(){
     try {
         
