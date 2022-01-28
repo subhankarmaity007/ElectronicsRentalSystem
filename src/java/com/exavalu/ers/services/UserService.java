@@ -66,4 +66,33 @@ public class UserService extends ActionSupport{
         }
         return user;
     }
+
+    public int addUser(String userName, String userMobileNo, String userEmail, String password, String city, String country) 
+    throws Exception{
+        int i = 0;
+        Connection con = null;
+        try {
+            con = ConnectionManager.getConnection();
+            String sql = "INSERT INTO user(userName,userMobileNo,userEmail,password,city,country,status,roleId) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, userName);
+            ps.setString(2, userMobileNo);
+            ps.setString(3, userEmail);
+            ps.setString(4, password);
+            ps.setString(5, city);
+            ps.setString(6, country);
+            ps.setInt(7, 1);
+            ps.setInt(8, 2);
+            System.out.println("SQL for insert="+ps);
+            i = ps.executeUpdate();
+            return i;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return i;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 }
