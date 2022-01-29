@@ -63,6 +63,9 @@
             <result name="LOGIN">/login.jsp</result>
         </action>
        
-        
+        <action name="mostReportAdmin" class="com.exavalu.ers.actions.ReportAction" method="mostOrderedProduct" >
+            <result name="MOSTORDERED">/adminReports.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
     </package>
 </struts>
