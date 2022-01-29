@@ -1,4 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 
 
 
@@ -73,14 +75,45 @@
                                             </ul>
                                         
                                        
+
                                     
-                                </nav>
-                                <!-- /.sidebar-menu -->
-                            </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 50.699%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
-                <!-- /.sidebar -->
-            </aside>
+                                    
+                                </a>
+                            </li>
+                             <li class="nav-item">
+                                <a href="tabletShow" class="nav-link">
+                                    <i class="fas fa-desktop nav-icon" style="color:white"></i>
+                                    <button type="button" class="btn btn-success"><p>Tablet</p></button>
+                                    
+                                    
+                                </a>
+                            </li>
 
-         
-            
+                            <li class="nav-item menu-open">
+                                <a href="adminReports.jsp" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Reports
 
-       
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        
+                        </s:if>
+
+
+
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 50.699%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
+    <!-- /.sidebar -->
+</aside>
+
+<!-- Main Sidebar Container -->
+
+
+
+
+

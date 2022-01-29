@@ -37,39 +37,131 @@ public class ProductAction extends UserAction {
     private List<Products> productList = null;
     //private Admin admin = new Admin();
     private boolean noData = false;
-    private ProductService dao = new ProductService();
+    private ProductService daoo = new ProductService();
     private String submitType;
     private String msg1;
-    
-  private SessionMap<String, Object> sessionMap;
-   
- 
-   
+
     public String productReport() throws Exception {
-        
         setProductService(new ProductService());
-        
-             sessionMap.get("roleId");
-             if(sessionMap!=null){
+        try {
             setProductList(new ArrayList<>());
             setProductList(getProductService().showAllProducts());
-            
 
-            if (!productList.isEmpty() ) {
+            if (!productList.isEmpty()) {
                 setNoData(false);
-                System.out.println("Products retrieve = "+getProductList().size());
+                System.out.println("Products retrieve = " + getProductList().size());
                 System.out.println("setting nodata=false");
             } else {
                 setNoData(true);
             }
-            return "REPORTPRODUCT";
-             }
-             
-             else{
-                 return "LOGIN";
-             }
-        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "REPORTPRODUCT";
     }
+    public String laptop() throws Exception {
+        setProductService(new ProductService());
+        try {
+            setProductList(new ArrayList<>());
+            setProductList(getProductService().showLaptop());
+            System.out.println(productList);
+
+            if (!productList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Products retrieve = " + getProductList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "REPORTPRODUCT";
+    }
+    public String desktop() throws Exception {
+        setProductService(new ProductService());
+        try {
+            setProductList(new ArrayList<>());
+            setProductList(getProductService().showDesktop());
+            System.out.println(productList);
+
+            if (!productList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Products retrieve = " + getProductList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "REPORTPRODUCT";
+    }
+    public String tablet() throws Exception {
+        setProductService(new ProductService());
+        try {
+            setProductList(new ArrayList<>());
+            setProductList(getProductService().showTablet());
+            System.out.println(productList);
+
+            if (!productList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Products retrieve = " + getProductList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "REPORTPRODUCT";
+    }
+
+    public String productUpdate() throws Exception {
+        daoo=new ProductService();
+        try {
+            if (submitType.equals("updatedata")) {
+                Products product = daoo.fetchProductDetails(productId);
+                if (product != null) {
+                    productId = product.getProductId();
+                    productName = product.getProductName();
+                    productMake = product.getProductMake();
+                    //productSpecification = product.getProductSpecification();
+                    productPrice = product.getProductPrice();
+                    availability = product.getAvailability();
+                }
+            } else {
+                int i = daoo.updateProduct(productId, productName, productMake, productPrice, availability);
+                if (i > 0) {
+                    msg = "Record Updated Successfuly";
+                } else {
+                    msg = "error";
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "UPDATEPRODUCT";
+    }
+    public String productDelete() throws Exception {
+        try {
+            int isDeleted = daoo.deleteProductDetails(getProductId());
+            if (isDeleted > 0) {
+                setMsg1("Record deleted successfully");
+                System.out.println("Product Deleted");
+            } else {
+                setMsg1("Some error");
+                System.out.println("Some error");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "DELETEPRODUCT";
+}
+
+
 
     /**
      * @return the productId
@@ -226,6 +318,20 @@ public class ProductAction extends UserAction {
     }
 
     /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
+
+    /**
      * @return the rs
      */
     public ResultSet getRs() {
@@ -281,7 +387,19 @@ public class ProductAction extends UserAction {
         this.noData = noData;
     }
 
-    
+    /**
+     * @return the dao
+     */
+    public ProductService getDaoo() {
+        return daoo;
+    }
+
+    /**
+     * @param dao the dao to set
+     */
+    public void setDaoo(ProductService dao) {
+        this.daoo = daoo;
+    }
 
     /**
      * @return the submitType
@@ -310,38 +428,4 @@ public class ProductAction extends UserAction {
     public void setMsg1(String msg1) {
         this.msg1 = msg1;
     }
-
-    /**
-     * @return the serialVersionUID
-     */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
-    }
-
-    
-
-    /**
-     * @return the sessionMap
-     */
-    public SessionMap<String, Object> getSessionMap() {
-        return sessionMap;
-    }
-
-    /**
-     * @param sessionMap the sessionMap to set
-     */
-    public void setSessionMap(SessionMap<String, Object> sessionMap) {
-        this.sessionMap = sessionMap;
-    }
-
-    
-
-  
 }

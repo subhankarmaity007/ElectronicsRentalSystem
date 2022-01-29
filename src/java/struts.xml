@@ -10,9 +10,12 @@
     <package name="default" extends="struts-default">
         <action name="login" class="com.exavalu.ers.actions.UserAction" method="execute">
             <result name="ADMIN">/adminIndex.jsp</result>
-            <result name="CUSTOMER">/customerIndex.jsp</result>
+            <result name="CUSTOMER">/adminIndex.jsp</result>
             <result name="LOGIN">/login.jsp</result>
         </action> 
+        <action name="registerUser" class="com.exavalu.ers.actions.UserAction" method="registerUser">
+            <result name="LOGIN">/login.jsp</result>
+        </action>
         <action name="logout" class="com.exavalu.ers.actions.UserAction" method="logout">
             <result name="LOGOUT">/login.jsp</result>
             
@@ -22,6 +25,7 @@
             <result name="REPORTPRODUCT">/adminProducts.jsp</result>
             <result name="LOGIN">/login.jsp</result>
         </action>
+
         
          <action name="report" class="com.exavalu.ers.actions.OrderAction" method="orderReport">
             <result name="ORDERREPORT">/adminOrders.jsp</result>
@@ -43,6 +47,37 @@
         </action>
         
        
+
         
+        <action name="deletecustomer" class="com.exavalu.ers.actions.UserAction" method="deleteCustomer">
+            <result name="DELETE">/deleteCustomers.jsp</result>
+        </action>
+        
+        <action name="updateproduct" class="com.exavalu.ers.actions.ProductAction" method="productUpdate">
+            <result name="UPDATEPRODUCT">/adminProductsUpdate.jsp</result>
+        </action>
+        <action name="deleterecord" class="com.exavalu.ers.actions.ProductAction" method="productDelete">
+            <result name="DELETEPRODUCT">/adminProductsDelete.jsp</result>
+        </action>
+        <action name="report" class="com.exavalu.ers.actions.ProductAction" method="productReport">
+            <result name="REPORTPRODUCT">/adminProducts.jsp</result>
+        </action>
+        <action name="laptopShow" class="com.exavalu.ers.actions.ProductAction" method="laptop">
+            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
+         <action name="desktopShow" class="com.exavalu.ers.actions.ProductAction" method="desktop">
+            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
+         <action name="tabletShow" class="com.exavalu.ers.actions.ProductAction" method="tablet">
+            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
+       
+        <action name="mostReportAdmin" class="com.exavalu.ers.actions.ReportAction" method="mostOrderedProduct" >
+            <result name="MOSTORDERED">/adminReports.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
     </package>
 </struts>

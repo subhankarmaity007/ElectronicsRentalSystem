@@ -34,12 +34,12 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="registerUser" method="post">
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="User Name">
+                                <input type="text" name="userName" class="form-control" placeholder="User Name" required>
 
                             </div>
                             <br>
@@ -47,35 +47,35 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
                             </div>
                             <br>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="E-mail">
+                                <input type="email" name="userEmail" class="form-control" placeholder="E-mail" required>
                             </div>
                             <br>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Mobile Number">
+                                <input type="text" name="userMobileNo" class="form-control" placeholder="Mobile Number" required>
                             </div>
                             <br>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-city"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="City">
+                                <input type="text" name="city" class="form-control" placeholder="City" required>
                             </div>
                             <br>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-flag" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Country">
+                                <input type="text" name="country" class="form-control" placeholder="Country" required>
                             </div>
                             <br>
                             <div class="form-group">

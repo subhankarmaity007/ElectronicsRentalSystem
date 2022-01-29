@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import com.exavalu.ers.pojos.User;
+import com.exavalu.ers.services.ReportService;
 import com.exavalu.ers.services.UserService;
 import com.exavalu.ers.servlets.LoginServlet;
 import java.io.IOException;
@@ -23,7 +24,7 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  *
  */
-public class UserAction  implements SessionAware {
+public class UserAction implements SessionAware {
 
     private int userId;
     private String userName;
@@ -35,6 +36,8 @@ public class UserAction  implements SessionAware {
     private int status;
     private int roleId;
     private boolean validUser;
+    private List<Object> newProductList = null;
+    private List<Object> mostOrderedList = null;
 
     private static long serialVersionUID = 6329394260276112660L;
     private ResultSet rs = null;
@@ -44,63 +47,177 @@ public class UserAction  implements SessionAware {
     private String msg = "";
     private UserService userservice = null;
     private int ctr = 0;
+    private ReportService reportService = null;
 
     private UserService dao = new UserService();
     private String submitType;
 
-    
+    private boolean session = false;
 
-   
-
-       
-        private SessionMap<String, Object> sessionMap;
+    private SessionMap<String, Object> sessionMap;
 
 //getters and setters  
     @Override
-        public void setSession(Map<String, Object> map) {
-            setSessionMap((SessionMap<String, Object>) (SessionMap) map);
-        }
+    public void setSession(Map<String, Object> map) {
+        setSessionMap((SessionMap<String, Object>) (SessionMap) map);
+    }
 
-        public String execute() throws ClassNotFoundException, IOException {
-        
+    public String execute() throws ClassNotFoundException, IOException {
+
+        if (isSession() == false) {
+             setReportService(new ReportService());
+            setSession(true);
             User myUser = new User();
-            myUser.setUserEmail(userEmail);
-            myUser.setPassword(password);
-             System.out.println(userEmail);
-             String email=userEmail;
-            
+            myUser.setUserEmail(getUserEmail());
+            myUser.setPassword(getPassword());
+            System.out.println(getUserEmail());
+
             User validuser = UserService.validateLoginCredentials(myUser);
             System.out.println(validuser.getUserEmail());
             if (validuser.isValidUser()) {
-                sessionMap.put("login", "true");
-                sessionMap.put("userEmail", validuser.getUserEmail());
-                sessionMap.put("roleId", validuser.getRoleId());
-                       System.out.println(sessionMap.get("roleId"));  
+                getSessionMap().put("login", "true");
+                getSessionMap().put("userEmail", validuser.getUserEmail());
+                getSessionMap().put("roleId", validuser.getRoleId());
+                System.out.println(getSessionMap().get("roleId"));
 
-                if(validuser.getRoleId()==1)
-                {
-                     return "ADMIN";
+                if ((int) getSessionMap().get("roleId") == 1) {
+                    return "ADMIN";
+                } else {
+                    setMostOrderedList(new ArrayList<>());
+                    try {
+                        setMostOrderedList(getReportService().mostOrderedProduct());
+                    } catch (Exception ex) {
+                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    setNewProductList(new ArrayList<>());
+                    try {
+                        setNewProductList(getReportService().newAddedProducts());
+                    } catch (Exception ex) {
+                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    if (!mostOrderedList.isEmpty()) {
+                        setNoData(false);
+                        System.out.println("Products retrieve = " + getMostOrderedList().size());
+                        System.out.println("setting nodata=false");
+                    } else {
+                        setNoData(true);
+                    }
+                        return "CUSTOMER";
+
                 }
-                else
-                {
-                    return "CUSTOMER";
-                }
-               
-            } 
+            }
             else {
                 return "LOGIN";
             }
         
         }
+        else {
+            if ((int) getSessionMap().get("roleId") == 1) {
+                return "ADMIN";
+            } else {
+                 setMostOrderedList(new ArrayList<>());
+                    try {
+                        setMostOrderedList(getReportService().mostOrderedProduct());
+                    } catch (Exception ex) {
+                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
-        public String logout() {
-            if (getSessionMap() != null) {
-                getSessionMap().invalidate();
+                    setNewProductList(new ArrayList<>());
+                    try {
+                        setNewProductList(getReportService().newAddedProducts());
+                    } catch (Exception ex) {
+                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    if (!mostOrderedList.isEmpty()) {
+                        setNoData(false);
+                        System.out.println("Products retrieve = " + getMostOrderedList().size());
+                        System.out.println("setting nodata=false");
+                    } else {
+                        setNoData(true);
+                    }
+                return "CUSTOMER";
             }
-            return "LOGOUT";
+        }
+    }
+
+    public String logout() {
+        if (getSessionMap() != null) {
+            setSession(false);
+            getSessionMap().invalidate();
+        }
+        return "LOGOUT";
+    }
+
+    private UserService us = new UserService();
+
+    public String updateModified() throws Exception {
+        try {
+            System.out.println(getUserId());
+            if (getSubmitType().equals("updatedata")) {
+                System.out.println(getUserId());
+                User user = getUs().fetchUserDetails(getUserId());
+                if (user != null) {
+                    setUserName(user.getUserName());
+                    setPassword(user.getPassword());
+                    setUserId(user.getUserId());
+                    setUserMobileNo(user.getUserMobileNo());
+                    setUserEmail(user.getUserEmail());
+                    setCity(user.getCity());
+                    setCountry(user.getCountry());
+                    setStatus(user.getStatus());
+                    setRoleId(user.getRoleId());
+                }
+            } else {
+                int i = getUs().updateUserDetails(getUserId(), getUserName(), getPassword(), getUserMobileNo(), getUserEmail(), getCity(), getCountry(), getStatus(), getRoleId());
+                if (i > 0) {
+                    setMsg("Record Updated Successfuly");
+                } else {
+                    setMsg("error");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-    
+        return "UPDATE";
+    }
+
+    public String executeCustomer() throws Exception {
+        try {
+            setUserList(new ArrayList<>());
+            setUserList(UserService.report());
+
+            if (!userList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getUserList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "REPORT";
+    }
+    private UserService usd = new UserService();
+
+    public String deleteCustomer() throws Exception {
+        try {
+            int isDeleted = getUsd().deleteUserDetails(getUserId());
+            if (isDeleted > 0) {
+                setMsg("Record deleted successfully");
+            } else {
+                setMsg("Some error");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "DELETE";
+    }
 
     // call a java service in my server or external server.
     /*       User myUser = new User();
@@ -130,25 +247,26 @@ public class UserAction  implements SessionAware {
                     return "LOGIN";
                 }
 }*/
-
- /*public String registerUser(){
-   
-    
-        setAdmin(new Admin());
-
-        try {
-            setCtr(getAdmin().registerUser(getUserName(), getPassword(), getFirstName(), getLastName(), getEmail(), getPhoneNumber()));
-            if (getCtr() > 0) {
-                setMsg("Registration Successfull");
-            } else {
-                setMsg("Some error");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public String registerUser() throws Exception {
+        setCtr(getDao().addUser(getUserName(), getUserMobileNo(), getUserEmail(), getPassword(), getCity(), getCountry()));
+        if (getCtr() > 0) {
+            setMsg("Registration Successfull");
+        } else {
+            setMsg("Some error");
         }
-        return "REGISTER";
+        return "LOGIN";
+
     }
 
+    /*
+        setUserName(userName);
+        setUserMobileNo(userMobileNo);
+        setUserEmail(userEmail);
+        setPassword(password);
+        setCity(password);
+        setCountry(city);
+     */
+ /*
 public String reportUser(){
     try {
         
@@ -504,6 +622,90 @@ public String deleteUser(){
      */
     public void setSessionMap(SessionMap<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
+    }
+
+    /**
+     * @return the newProductList
+     */
+    public List<Object> getNewProductList() {
+        return newProductList;
+    }
+
+    /**
+     * @param newProductList the newProductList to set
+     */
+    public void setNewProductList(List<Object> newProductList) {
+        this.newProductList = newProductList;
+    }
+
+    /**
+     * @return the mostOrderedList
+     */
+    public List<Object> getMostOrderedList() {
+        return mostOrderedList;
+    }
+
+    /**
+     * @param mostOrderedList the mostOrderedList to set
+     */
+    public void setMostOrderedList(List<Object> mostOrderedList) {
+        this.mostOrderedList = mostOrderedList;
+    }
+
+    /**
+     * @return the reportService
+     */
+    public ReportService getReportService() {
+        return reportService;
+    }
+
+    /**
+     * @param reportService the reportService to set
+     */
+    public void setReportService(ReportService reportService) {
+        this.reportService = reportService;
+    }
+
+    /**
+     * @return the session
+     */
+    public boolean isSession() {
+        return session;
+    }
+
+    /**
+     * @param session the session to set
+     */
+    public void setSession(boolean session) {
+        this.session = session;
+    }
+
+    /**
+     * @return the us
+     */
+    public UserService getUs() {
+        return us;
+    }
+
+    /**
+     * @param us the us to set
+     */
+    public void setUs(UserService us) {
+        this.us = us;
+    }
+
+    /**
+     * @return the usd
+     */
+    public UserService getUsd() {
+        return usd;
+    }
+
+    /**
+     * @param usd the usd to set
+     */
+    public void setUsd(UserService usd) {
+        this.usd = usd;
     }
 
 }

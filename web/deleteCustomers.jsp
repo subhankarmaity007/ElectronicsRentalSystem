@@ -3,10 +3,10 @@
 <html lang="en" style="height: auto;"><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Customers</title>
+        <title>Admin Customers</title>
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        
+
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
         <!-- Google Font: Source Sans Pro -->
@@ -27,7 +27,7 @@
 
         <style type="text/css">/* Chart.js */
             @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style></head>
-    <body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" data-new-gr-c-s-check-loaded="14.1046.0" data-gr-ext-installed="" style="height: auto;">
+    <body class="dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" data-new-gr-c-s-check-loaded="14.1046.0" data-gr-ext-installed="" style="height: auto;">
         <div class="wrapper">
 
             <!-- Preloader -->
@@ -39,37 +39,37 @@
                 <!-- Content Header (Page header) -->
 
                 <!-- /.content-header -->
+                <h2>Delete Update</h2>
+                <font style="color: #a52834"><s:property value="MSG"></s:property></font>
+                    <form  action = "deleterecord" method="post">
+                    </form>
+               <span><s:property value="msg" /></span><br><br>
+                
+                <jsp:include page="sidebar.jsp" />
 
-              
-                <!-- /.content -->
-            </div
-            <jsp:include page="sidebar.jsp" />
+                <jsp:include page="footer.jsp" />
 
-            <jsp:include page="footer.jsp" />
+                <!-- jQuery -->
+                <script src="plugins/jquery/jquery.min.js"></script>
+                <!-- Bootstrap -->
+                <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- overlayScrollbars -->
+                <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+                <!-- AdminLTE App -->
+                <script src="dist/js/adminlte.js"></script>
 
-        </div>
-            
-             <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.js"></script>
+                <!-- PAGE PLUGINS -->
+                <!-- jQuery Mapael -->
+                <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+                <script src="plugins/raphael/raphael.min.js"></script>
+                <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+                <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+                <!-- ChartJS -->
+                <script src="plugins/chart.js/Chart.min.js"></script>
 
-        <!-- PAGE PLUGINS -->
-        <!-- jQuery Mapael -->
-        <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-        <script src="plugins/raphael/raphael.min.js"></script>
-        <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-        <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-        <!-- ChartJS -->
-        <script src="plugins/chart.js/Chart.min.js"></script>
+                <!-- AdminLTE for demo purposes -->
+                <script src="dist/js/demo.js"></script>
+                <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+                <script src="dist/js/pages/dashboard2.js"></script>
 
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="dist/js/pages/dashboard2.js"></script>
-        
-    </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+                </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@taglib prefix="s" uri="/struts-tags"%>
 
 
@@ -21,6 +21,28 @@
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
+        <script>
+            
+            function addProductToCart(pid)
+            {
+
+                var qty = document.getElementById("Quantity_" + pid).value;
+                alert("Product Id = "+qty);
+                $.ajax({
+                    url: 'AddProductToCart',
+                    method: 'POST',
+                    data: {productId: pid, quantity: qty},
+                    success: function (resultText) {
+                        $('#result').html(resultText);
+                    },
+                    error: function (jqXHR, exception) {
+                        console.log('Error occured!!');
+                    }
+                });
+            }
+
+
+        </script>
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
         <!-- Font Awesome Icons -->
@@ -107,11 +129,11 @@
                                 <td><s:property value="actions" /></td>
 
                                 <td>
-                                    <a href="updateproduct.action?submitType=updatedata&productId=<s:property value="productId"/>">
-                                        <button type="button" class="btn btn-success">Update</button>
+                                    <a class="btn btn-outline-success" href="updateproduct.action?submitType=updatedata&productId=<s:property value="productId"/>">
+                                        <button class="button-update">Update</button>
                                     </a>
-                                    <a href="deleterecord.action?productId=<s:property value="productId"/>">
-                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    <a class="btn btn-outline-danger" href="deleterecord.action?productId=<s:property value="productId"/>">
+                                        <button class="button-delete">Delete</button>
                                     </a>
                                 </td>
                             </tr>
@@ -119,16 +141,34 @@
                     </tbody>
                     </table>
                 </div>
-
-                
-                </table>
-
+                <!-- /.content -->
             </div>
         </s:if>
 
         <s:if test = "#role==2">
             <div class="content-wrapper" style="min-height: 689px;">   
-               <tbody>
+                <h1>Customer Products List</h1>           
+
+                <!-- Content Header (Page header) -->
+
+                <!-- /.content-header -->
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product Id</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Product Make</th>
+                                <th scope="col">Product Specification</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Availability</th>
+                                <th scope="col">Product Image</th>
+
+                            </tr>
+                        </thead>
+                </div>
+                <tbody>
                     <s:iterator value="productList">
                         <tr>
                             <td><s:property value="productId" /></td>
@@ -137,48 +177,52 @@
                             <td><s:property value="productSpecification" /></td>
                             <td><s:property value="productPrice" /></td>
                             <td><s:property value="availability" /></td>
-
+                            <td><s:property value="productImage" /></td>
+                            <td><input type="number" min="1" oninput="this.value=Math.abs(this.value)" max="<s:property value="availability" />" onkeyup="if (this.value < 0) {
+                    this.value = this.value * -1
+                }" id='Quantity_<s:property value="productId"/>' value=""></td>
                             <td>
-                                <a href="updateproduct.action?submitType=updatedata&productId=<s:property value="productId"/>">
-                                    <button class="button-update">Update</button>
-                                </a>
-                                <a class="fa fa-archive"   href="deleterecord.action?productId=<s:property value="productId"/>">
-                                    <button class="button-delete">Delete</button>
-                                </a>
+                                <input class="btn btn-outline-success" type="button" value='Add to Cart' onclick="addProductToCart(<s:property value="productId"/>)">
                             </td>
                         </tr>
                     </s:iterator>
                 </tbody>
-            </div>
-        </s:if>
-
-        <jsp:include page="sidebar.jsp" />
-
-        <jsp:include page="footer.jsp" />
+            </table>
+        </div>
+        <!-- /.content -->
     </div>
+</s:if>
 
 
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.js"></script>
 
-    <!-- PAGE PLUGINS -->
-    <!-- jQuery Mapael -->
-    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="plugins/raphael/raphael.min.js"></script>
-    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-    <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
+<jsp:include page="sidebar.jsp" />
 
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="dist/js/pages/dashboard2.js"></script>
+<jsp:include page="footer.jsp" />
+</div>
+
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="plugins/raphael/raphael.min.js"></script>
+<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard2.js"></script>
 
 </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
