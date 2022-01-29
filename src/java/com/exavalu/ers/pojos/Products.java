@@ -16,6 +16,7 @@ public class Products {
     private double productPrice;
     private double price;
     private int availability;
+    private int quantity;
     private boolean status;
     private String productImage;
     private String productSpecification;
@@ -145,6 +146,20 @@ public class Products {
      */
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    /**
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @param quantity the quantity to set
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
     
     

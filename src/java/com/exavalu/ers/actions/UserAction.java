@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import com.exavalu.ers.pojos.User;
+import com.exavalu.ers.services.ReportService;
 import com.exavalu.ers.services.UserService;
 import com.exavalu.ers.servlets.LoginServlet;
 import java.io.IOException;
@@ -35,6 +36,8 @@ public class UserAction implements SessionAware {
     private int status;
     private int roleId;
     private boolean validUser;
+    private List<Object> newProductList = null;
+    private List<Object> mostOrderedList = null;
 
     private static long serialVersionUID = 6329394260276112660L;
     private ResultSet rs = null;
@@ -44,11 +47,12 @@ public class UserAction implements SessionAware {
     private String msg = "";
     private UserService userservice = null;
     private int ctr = 0;
+    private ReportService reportService = null;
 
     private UserService dao = new UserService();
     private String submitType;
 
-    boolean session = false;
+    private boolean session = false;
 
     private SessionMap<String, Object> sessionMap;
 
@@ -59,67 +63,115 @@ public class UserAction implements SessionAware {
     }
 
     public String execute() throws ClassNotFoundException, IOException {
-        
-        if (session == false) {
-            session = true;
+
+        if (isSession() == false) {
+             setReportService(new ReportService());
+            setSession(true);
             User myUser = new User();
-            myUser.setUserEmail(userEmail);
-            myUser.setPassword(password);
-            System.out.println(userEmail);
+            myUser.setUserEmail(getUserEmail());
+            myUser.setPassword(getPassword());
+            System.out.println(getUserEmail());
 
             User validuser = UserService.validateLoginCredentials(myUser);
             System.out.println(validuser.getUserEmail());
             if (validuser.isValidUser()) {
-                sessionMap.put("login", "true");
-                sessionMap.put("userEmail", validuser.getUserEmail());
-                sessionMap.put("roleId", validuser.getRoleId());
-                System.out.println(sessionMap.get("roleId"));
+                getSessionMap().put("login", "true");
+                getSessionMap().put("userEmail", validuser.getUserEmail());
+                getSessionMap().put("roleId", validuser.getRoleId());
+                System.out.println(getSessionMap().get("roleId"));
 
-                if ((int) sessionMap.get("roleId") == 1) {
+                if ((int) getSessionMap().get("roleId") == 1) {
                     return "ADMIN";
                 } else {
-                    return "CUSTOMER";
-                }
+                    setMostOrderedList(new ArrayList<>());
+                    try {
+                        setMostOrderedList(getReportService().mostOrderedProduct());
+                    } catch (Exception ex) {
+                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
-            } else {
-                if ((int) sessionMap.get("roleId") == 1) {
-                    return "ADMIN";
-                } else {
-                    return "CUSTOMER";
+                    setNewProductList(new ArrayList<>());
+                    try {
+                        setNewProductList(getReportService().newAddedProducts());
+                    } catch (Exception ex) {
+                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    if (!mostOrderedList.isEmpty()) {
+                        setNoData(false);
+                        System.out.println("Products retrieve = " + getMostOrderedList().size());
+                        System.out.println("setting nodata=false");
+                    } else {
+                        setNoData(true);
+                    }
+                        return "CUSTOMER";
+
                 }
             }
-        } else {
-            return "LOGIN";
+            else {
+                return "LOGIN";
+            }
+        
+        }
+        else {
+            if ((int) getSessionMap().get("roleId") == 1) {
+                return "ADMIN";
+            } else {
+                 setMostOrderedList(new ArrayList<>());
+                    try {
+                        setMostOrderedList(getReportService().mostOrderedProduct());
+                    } catch (Exception ex) {
+                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    setNewProductList(new ArrayList<>());
+                    try {
+                        setNewProductList(getReportService().newAddedProducts());
+                    } catch (Exception ex) {
+                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    if (!mostOrderedList.isEmpty()) {
+                        setNoData(false);
+                        System.out.println("Products retrieve = " + getMostOrderedList().size());
+                        System.out.println("setting nodata=false");
+                    } else {
+                        setNoData(true);
+                    }
+                return "CUSTOMER";
+            }
         }
     }
 
     public String logout() {
         if (getSessionMap() != null) {
-            session = false;
+            setSession(false);
             getSessionMap().invalidate();
         }
         return "LOGOUT";
     }
-    
+
     private UserService us = new UserService();
+
     public String updateModified() throws Exception {
-        try {System.out.println(userId);
-            if (submitType.equals("updatedata")) {
-                System.out.println(userId);
-                User user = us.fetchUserDetails(getUserId());
+        try {
+            System.out.println(getUserId());
+            if (getSubmitType().equals("updatedata")) {
+                System.out.println(getUserId());
+                User user = getUs().fetchUserDetails(getUserId());
                 if (user != null) {
                     setUserName(user.getUserName());
                     setPassword(user.getPassword());
                     setUserId(user.getUserId());
                     setUserMobileNo(user.getUserMobileNo());
                     setUserEmail(user.getUserEmail());
-                    setCity(user.getCity()); 
+                    setCity(user.getCity());
                     setCountry(user.getCountry());
                     setStatus(user.getStatus());
                     setRoleId(user.getRoleId());
                 }
             } else {
-                int i = us.updateUserDetails(userId, userName, password, userMobileNo, userEmail, city, country, status, roleId);
+                int i = getUs().updateUserDetails(getUserId(), getUserName(), getPassword(), getUserMobileNo(), getUserEmail(), getCity(), getCountry(), getStatus(), getRoleId());
                 if (i > 0) {
                     setMsg("Record Updated Successfuly");
                 } else {
@@ -133,6 +185,7 @@ public class UserAction implements SessionAware {
 
         return "UPDATE";
     }
+
     public String executeCustomer() throws Exception {
         try {
             setUserList(new ArrayList<>());
@@ -150,14 +203,15 @@ public class UserAction implements SessionAware {
         }
         return "REPORT";
     }
-    UserService usd = new UserService();
+    private UserService usd = new UserService();
+
     public String deleteCustomer() throws Exception {
         try {
-            int isDeleted = usd.deleteUserDetails(userId);
+            int isDeleted = getUsd().deleteUserDetails(getUserId());
             if (isDeleted > 0) {
-                msg = "Record deleted successfully";
+                setMsg("Record deleted successfully");
             } else {
-                msg = "Some error";
+                setMsg("Some error");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -194,7 +248,7 @@ public class UserAction implements SessionAware {
                 }
 }*/
     public String registerUser() throws Exception {
-        setCtr(dao.addUser(userName, userMobileNo, userEmail, password, city, country));
+        setCtr(getDao().addUser(getUserName(), getUserMobileNo(), getUserEmail(), getPassword(), getCity(), getCountry()));
         if (getCtr() > 0) {
             setMsg("Registration Successfull");
         } else {
@@ -203,6 +257,7 @@ public class UserAction implements SessionAware {
         return "LOGIN";
 
     }
+
     /*
         setUserName(userName);
         setUserMobileNo(userMobileNo);
@@ -210,8 +265,8 @@ public class UserAction implements SessionAware {
         setPassword(password);
         setCity(password);
         setCountry(city);
-    */
-    /*
+     */
+ /*
 public String reportUser(){
     try {
         
@@ -567,6 +622,90 @@ public String deleteUser(){
      */
     public void setSessionMap(SessionMap<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
+    }
+
+    /**
+     * @return the newProductList
+     */
+    public List<Object> getNewProductList() {
+        return newProductList;
+    }
+
+    /**
+     * @param newProductList the newProductList to set
+     */
+    public void setNewProductList(List<Object> newProductList) {
+        this.newProductList = newProductList;
+    }
+
+    /**
+     * @return the mostOrderedList
+     */
+    public List<Object> getMostOrderedList() {
+        return mostOrderedList;
+    }
+
+    /**
+     * @param mostOrderedList the mostOrderedList to set
+     */
+    public void setMostOrderedList(List<Object> mostOrderedList) {
+        this.mostOrderedList = mostOrderedList;
+    }
+
+    /**
+     * @return the reportService
+     */
+    public ReportService getReportService() {
+        return reportService;
+    }
+
+    /**
+     * @param reportService the reportService to set
+     */
+    public void setReportService(ReportService reportService) {
+        this.reportService = reportService;
+    }
+
+    /**
+     * @return the session
+     */
+    public boolean isSession() {
+        return session;
+    }
+
+    /**
+     * @param session the session to set
+     */
+    public void setSession(boolean session) {
+        this.session = session;
+    }
+
+    /**
+     * @return the us
+     */
+    public UserService getUs() {
+        return us;
+    }
+
+    /**
+     * @param us the us to set
+     */
+    public void setUs(UserService us) {
+        this.us = us;
+    }
+
+    /**
+     * @return the usd
+     */
+    public UserService getUsd() {
+        return usd;
+    }
+
+    /**
+     * @param usd the usd to set
+     */
+    public void setUsd(UserService usd) {
+        this.usd = usd;
     }
 
 }
