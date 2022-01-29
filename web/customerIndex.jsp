@@ -3,12 +3,9 @@
 <html lang="en" style="height: auto;"><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin Dashboard</title>
-
+        <title>Customer Dashboard</title>
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
         <!-- Font Awesome Icons -->
@@ -17,11 +14,6 @@
         <link rel="stylesheet" href="./css/OverlayScrollbars.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="./css/adminlte.min.css">
-
-
-
-
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
@@ -53,7 +45,7 @@
                                         <span class="info-box-text">Desktop</span>
                                         <span class="info-box-number">
                                             1,000
-                                            
+
                                         </span>
                                     </div>
                                     <!-- /.info-box-content -->
@@ -99,31 +91,16 @@
                                         <span class="info-box-text">New Customers</span>
                                         <span class="info-box-number">452</span>
                                     </div>
-                                    <!-- /.info-box-content -->
                                 </div>
-                                <!-- /.info-box -->
                             </div>
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
 
-
-                        <!-- /.row -->
-
-                        <!-- Main row -->
-                        <div class="row">
+                        <div class="row" >
                             <!-- Left col -->
                             <div class="col-md-8">
-                                <!-- MAP & BOX PANE -->
-
-                                <!-- /.card -->
-
-                                <!-- /.row -->
-
-                                <!-- TABLE: LATEST ORDERS -->
-                                <div class="card">
+                                <div class="card" style{overflow: scroll;}>
                                     <div class="card-header border-transparent">
-                                        <h3 class="card-title">Latest Orders</h3>
+                                        <h3 class="card-title">Products You May Like</h3>
 
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -140,75 +117,28 @@
                                             <table class="table m-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Order ID</th>
-                                                        <th>Item</th>
-                                                        <th>Status</th>
-                                                        <th>Popularity</th>
+                                                        <th>Product Name</th>
+                                                        <th>Price</th>
+                                                        <th>Quantity Available</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                        <td>Call of Duty IV</td>
-                                                        <td><span class="badge badge-success">Shipped</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                        <td>Samsung Smart TV</td>
-                                                        <td><span class="badge badge-warning">Pending</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                        <td>iPhone 6 Plus</td>
-                                                        <td><span class="badge badge-danger">Delivered</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                        <td>Samsung Smart TV</td>
-                                                        <td><span class="badge badge-info">Processing</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                        <td>Samsung Smart TV</td>
-                                                        <td><span class="badge badge-warning">Pending</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                        <td>iPhone 6 Plus</td>
-                                                        <td><span class="badge badge-danger">Delivered</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                        <td>Call of Duty IV</td>
-                                                        <td><span class="badge badge-success">Shipped</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                                        </td>
-                                                    </tr>
+                                                    <s:iterator value="mostOrderedList">
+                                                        <tr>
+                                                            <td><s:property value="productName" /></td>
+                                                            <td><s:property value="productPrice" /></td>
+                                                            <td><s:property value="quantity" /></td>
+                                                            <td>
+                                                                <input type="button" value='Add to Cart' >
+                                                            </td>
+                                                        </tr>
+                                                    </s:iterator>
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!-- /.table-responsive -->
                                     </div>
-                                    <!-- /.card-body -->
+
                                     <div class="card-footer clearfix">
                                         <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
                                         <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
@@ -220,16 +150,9 @@
                             <!-- /.col -->
 
                             <div class="col-md-4">
-                                <!-- Info Boxes Style 2 -->
-
-
-
-                                <!-- /.card -->
-
-                                <!-- PRODUCT LIST -->
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Recently Added Products</h3>
+                                    <div class="card-header border-transparent">
+                                        <h3 class="card-title">Recently added Products</h3>
 
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -240,86 +163,37 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <!-- /.card-header -->
+
                                     <div class="card-body p-0">
-                                        <ul class="products-list product-list-in-card pl-2 pr-2">
-                                            <li class="item">
-                                                <div class="product-img">
-                                                    <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                                                </div>
-                                                <div class="product-info">
-                                                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                                                        <span class="badge badge-warning float-right">$1800</span></a>
-                                                    <span class="product-description">
-                                                        Samsung 32" 1080p 60Hz LED Smart HDTV.
-                                                    </span>
-                                                </div>
-                                            </li>
-                                            <!-- /.item -->
-                                            <li class="item">
-                                                <div class="product-img">
-                                                    <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                                                </div>
-                                                <div class="product-info">
-                                                    <a href="javascript:void(0)" class="product-title">Bicycle
-                                                        <span class="badge badge-info float-right">$700</span></a>
-                                                    <span class="product-description">
-                                                        26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                                                    </span>
-                                                </div>
-                                            </li>
-                                            <!-- /.item -->
-                                            <li class="item">
-                                                <div class="product-img">
-                                                    <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                                                </div>
-                                                <div class="product-info">
-                                                    <a href="javascript:void(0)" class="product-title">
-                                                        Xbox One <span class="badge badge-danger float-right">
-                                                            $350
-                                                        </span>
-                                                    </a>
-                                                    <span class="product-description">
-                                                        Xbox One Console Bundle with Halo Master Chief Collection.
-                                                    </span>
-                                                </div>
-                                            </li>
-                                            <!-- /.item -->
-                                            <li class="item">
-                                                <div class="product-img">
-                                                    <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                                                </div>
-                                                <div class="product-info">
-                                                    <a href="javascript:void(0)" class="product-title">PlayStation 4
-                                                        <span class="badge badge-success float-right">$399</span></a>
-                                                    <span class="product-description">
-                                                        PlayStation 4 500GB Console (PS4)
-                                                    </span>
-                                                </div>
-                                            </li>
-                                            <!-- /.item -->
-                                        </ul>
+                                        <div class="table-responsive">
+                                            <table class="table m-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Product Name</th>
+                                                        <th>Price</th>
+                                                        <th>Product Make</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <s:iterator value="newProductList">
+                                                        <tr>
+                                                            <td><s:property value="productName" /></td>
+                                                            <td><s:property value="productPrice" /></td>
+                                                            <td><s:property value="productMake" /></td>
+                                                        </tr>
+                                                    </s:iterator>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <!-- /.card-body -->
-                                    <div class="card-footer text-center">
-                                        <a href="javascript:void(0)" class="uppercase">View All Products</a>
-                                    </div>
-                                    <!-- /.card-footer -->
                                 </div>
-                                <!-- /.card -->
                             </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-                    </div><!--/. container-fluid -->
+<!--                        </div>-->
+                    </div>
                 </section>
-                <!-- /.content -->
-            </div
+
+            </div>
             <jsp:include page="sidebar.jsp" />
-
             <jsp:include page="footer.jsp" />
-
         </div>
-      
-        
     </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

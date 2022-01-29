@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
 <html lang="en" style="height: auto;"><head>
         <title>Admin Reports</title>
 
@@ -147,9 +148,7 @@
                     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
-                                <!--                                                                <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                                                                                                    <i class="material-icons opacity-10">person</i>
-                                                                                                </div>-->
+
                                 <div class="text-end pt-1">
                                     <p class="text-sm mb-0 text-capitalize">New Clients</p>
                                     <h4 class="mb-0">3,462</h4>
@@ -244,363 +243,162 @@
                 <div class="row mb-4">
                     <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
                         <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="row">
-                                    <div class="col-lg-6 col-7">
-                                        <h6>Projects</h6>
-                                        <p class="text-sm mb-0">
-                                            <i class="fa fa-check text-info" aria-hidden="true"></i>
-                                            <span class="font-weight-bold ms-1">30 done</span> this month
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-6 col-5 my-auto text-end">
-                                        <div class="dropdown float-lg-end pe-4">
-                                            <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fa fa-ellipsis-v text-secondary"></i>
-                                            </a>
-                                            <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                                                <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                                                <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                                                <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                            <div class="card-header border-transparent">
+                                <h3 class="card-title">Most Ordered Products</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="card-body px-0 pb-2">
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
                                 <div class="table-responsive">
-                                    <table class="table align-items-center mb-0">
+                                    <table class="table m-0">
                                         <thead>
                                             <tr>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Companies</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Project Group</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Target</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th>
-                                            </tr>
-                                        </thead>
+                                                <th>Product ID</th>
+                                                <th>Product Name</th>
+                                                <th>Quantity</th>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div>
-                                                            <img src="./img/dell.png" class="avatar avatar-sm me-3" alt="xd" width="20" height="20">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">Dell </h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="avatar-group mt-2">
-                                                        Team A Team B Team C
-<!--                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                                                            <img src="../assets/img/team-1.jpg" alt="team1">
-                                                        </a>
-                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                                                            <img src="../assets/img/team-2.jpg" alt="team2">
-                                                        </a>
-                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                                                            <img src="../assets/img/team-3.jpg" alt="team3">
-                                                        </a>
-                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                                                            <img src="../assets/img/team-4.jpg" alt="team4">-->
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-xs font-weight-bold"> $14,000 </span>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="progress-wrapper w-75 mx-auto">
-                                                        <div class="progress-info">
-                                                            <div class="progress-percentage">
-                                                                <span class="text-xs font-weight-bold">10%</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div>
-                                                            <img src="./img/samsung.jpg" class="avatar avatar-sm me-3" alt="atlassian" width="20" height="20">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">Samsung</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="avatar-group mt-2">
-                                                        
-                                                        Team C Team D
-<!--                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                                                            <img src="../assets/img/team-2.jpg" alt="team5">
-                                                        </a>
-                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                                                            <img src="../assets/img/team-4.jpg" alt="team6">
-                                                        </a>-->
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-xs font-weight-bold"> $3,000 </span>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="progress-wrapper w-75 mx-auto">
-                                                        <div class="progress-info">
-                                                            <div class="progress-percentage">
-                                                                <span class="text-xs font-weight-bold">10%</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-gradient-info w-10" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div>
-                                                            <img src="./img/asusjpg.jpg" class="avatar avatar-sm me-3" alt="team7" width="20" height="20">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">Asus</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="avatar-group mt-2">
-                                                         Team A   Team D Team E  Team L
-                                                        
-                                                        
-                                                        
-<!--                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                                                            <img src="../assets/img/team-3.jpg" alt="team8">
-                                                        </a>
-                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                                                            <img src="../assets/img/team-1.jpg" alt="team9">
-                                                        </a>-->
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-xs font-weight-bold"> Not set </span>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="progress-wrapper w-75 mx-auto">
-                                                        <div class="progress-info">
-                                                            <div class="progress-percentage">
-                                                                <span class="text-xs font-weight-bold">100%</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div>
-                                                            <img src="./img/lenevo.png" class="avatar avatar-sm me-3" alt="spotify" width="20" height="20">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">Lenovo</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="avatar-group mt-2">
-                                                        
-                                                         Team I Team J  Team H Team L
-<!--                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                                                            <img src="../assets/img/team-4.jpg" alt="user1">
-                                                        </a>
-                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                                                            <img src="../assets/img/team-3.jpg" alt="user2">
-                                                        </a>
-                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                                                            <img src="../assets/img/team-4.jpg" alt="user3">
-                                                        </a>
-                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                                                            <img src="../assets/img/team-1.jpg" alt="user4">
-                                                        </a>-->
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-xs font-weight-bold"> $20,500 </span>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="progress-wrapper w-75 mx-auto">
-                                                        <div class="progress-info">
-                                                            <div class="progress-percentage">
-                                                                <span class="text-xs font-weight-bold">100%</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div>
-                                                            <img src="./img/hp.jpg" class="avatar avatar-sm me-3" alt="jira" width="20" height="20">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">HP </h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="avatar-group mt-2">
-                                                        
-                                                         Team M Team N  Team Y Team Z
-<!--                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                                                            <img src="../assets/img/team-4.jpg" alt="user5">
-                                                        </a>-->
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-xs font-weight-bold"> $500 </span>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="progress-wrapper w-75 mx-auto">
-                                                        <div class="progress-info">
-                                                            <div class="progress-percentage">
-                                                                <span class="text-xs font-weight-bold">25%</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-gradient-info w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div>
-                                                            <img src="./img/razerjpg.jpg" class="avatar avatar-sm me-3" alt="invision" width="20" height="20">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">Razer</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="avatar-group mt-2"> <!--<a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">-->
-                                                           Team A Team B Team O
-                                                           <!--<img src="../assets/img/team-1.jpg" alt="user6">-->
-                                                        <!--</a>-->
-<!--                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                                                            <img src="../assets/img/team-4.jpg" alt="user7">
-                                                        </a>-->
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-xs font-weight-bold"> $2,000 </span>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="progress-wrapper w-75 mx-auto">
-                                                        <div class="progress-info">
-                                                            <div class="progress-percentage">
-                                                                <span class="text-xs font-weight-bold">40%</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-gradient-info w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="40"></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <s:iterator value="mostOrderedList">
+                                                <tr>
+                                                    <td><s:property value="productId" /></td>
+                                                    <td><s:property value="productName" /></td>
+                                                    <td><s:property value="quantity" /></td>
+
+
+                                                </tr>
+                                            </s:iterator>
                                         </tbody>
                                     </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                                <a href="productAdmin" class="btn btn-sm btn-info float-right">View All Products</a>
+                            </div>
+                            <!-- /.card-footer -->
+                        </div>
+
+                    </div>
+                    <div class="card-body p-3">
+                        <div class="timeline timeline-one-side">
+                            <div class="timeline-block mb-3">
+                                <span class="timeline-step">
+                                    <i class="material-icons text-success text-gradient">notifications</i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
+                                </div>
+                            </div>
+                            <div class="timeline-block mb-3">
+                                <span class="timeline-step">
+                                    <i class="material-icons text-danger text-gradient">code</i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
+                                </div>
+                            </div>
+                            <div class="timeline-block mb-3">
+                                <span class="timeline-step">
+                                    <i class="material-icons text-info text-gradient">shopping_cart</i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
+                                </div>
+                            </div>
+                            <div class="timeline-block mb-3">
+                                <span class="timeline-step">
+                                    <i class="material-icons text-warning text-gradient">credit_card</i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order #4395133</h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
+                                </div>
+                            </div>
+                            <div class="timeline-block mb-3">
+                                <span class="timeline-step">
+                                    <i class="material-icons text-primary text-gradient">key</i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development</h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
+                                </div>
+                            </div>
+                            <div class="timeline-block">
+                                <span class="timeline-step">
+                                    <i class="material-icons text-dark text-gradient">payments</i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card h-100">
-                            <div class="card-header pb-0">
-                                <h6>Orders overview</h6>
-                                <p class="text-sm">
-                                    <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
-                                    <span class="font-weight-bold">24%</span> this month
-                                </p>
-                            </div>
-                            <div class="card-body p-3">
-                                <div class="timeline timeline-one-side">
-                                    <div class="timeline-block mb-3">
-                                        <span class="timeline-step">
-                                            <i class="material-icons text-success text-gradient">notifications</i>
-                                        </span>
-                                        <div class="timeline-content">
-                                            <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
-                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-block mb-3">
-                                        <span class="timeline-step">
-                                            <i class="material-icons text-danger text-gradient">code</i>
-                                        </span>
-                                        <div class="timeline-content">
-                                            <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
-                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-block mb-3">
-                                        <span class="timeline-step">
-                                            <i class="material-icons text-info text-gradient">shopping_cart</i>
-                                        </span>
-                                        <div class="timeline-content">
-                                            <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
-                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-block mb-3">
-                                        <span class="timeline-step">
-                                            <i class="material-icons text-warning text-gradient">credit_card</i>
-                                        </span>
-                                        <div class="timeline-content">
-                                            <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order #4395133</h6>
-                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-block mb-3">
-                                        <span class="timeline-step">
-                                            <i class="material-icons text-primary text-gradient">key</i>
-                                        </span>
-                                        <div class="timeline-content">
-                                            <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development</h6>
-                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-block">
-                                        <span class="timeline-step">
-                                            <i class="material-icons text-dark text-gradient">payments</i>
-                                        </span>
-                                        <div class="timeline-content">
-                                            <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
-                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
-                                        </div>
-                                    </div>
+
+                    <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
+
+                        <div class="card">
+                            <div class="card-header border-transparent">
+                                <h3 class="card-title">Out of Stock Products</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
                                 </div>
                             </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table m-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Product ID</th>
+                                                <th>Product Name</th>
+                                                <th>Product Price</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <s:iterator value="productList">
+                                                <tr>
+                                                    <td><s:property value="productId" /></td>
+                                                    <td><s:property value="productName" /></td>
+                                                    <td><s:property value="productPrice" /></td>
+                                                </tr>
+                                            </s:iterator>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
             </div>
 
-            <!--   Core JS Files   -->
+
+
+
+
+            <!--Core JS Files-->   
             <script src="./js/popper.min.js"></script>
             <script src="./js/bootstrap.min.js"></script>
             <script src="./js/perfect-scrollbar.min.js"></script>
@@ -776,7 +574,7 @@
         new Chart(ctx3, {
             type: "line",
             data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: ["<s:property value="productName"/>", "May", "Jun", "Jul", "Aug", "Sep", "<s:property value="productName"/>", "Nov", "Dec"],
                 datasets: [{
                         label: "Mobile apps",
                         tension: 0,
@@ -862,56 +660,38 @@
                     Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
                 }
             </script>
-            <!-- Github buttons -->
+            <!-- Github buttons 
             <script async defer src="./js/buttons.js"></script>
             <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
             <script src="./js/material-dashboard.min.js?v=3.0.0"></script>
 
-
-
-
-
             <jsp:include page="sidebar.jsp" />
 
+
+            <!-- jQuery -->
+            <script src="plugins/jquery/jquery.min.js"></script>
+            <!-- Bootstrap -->
+            <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- overlayScrollbars -->
+            <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="dist/js/adminlte.js"></script>
+
+            <!-- PAGE PLUGINS -->
+            <!-- jQuery Mapael -->
+            <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+            <script src="plugins/raphael/raphael.min.js"></script>
+            <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+            <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+            <!-- ChartJS -->
+            <script src="plugins/chart.js/Chart.min.js"></script>
+
+            <!-- AdminLTE for demo purposes -->
+            <script src="dist/js/demo.js"></script>
+            <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+            <script src="dist/js/pages/dashboard2.js"></script>
             <jsp:include page="footer.jsp" />
 
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-        <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.js"></script>
-
-        <!-- PAGE PLUGINS -->
-        <!-- jQuery Mapael -->
-        <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-        <script src="plugins/raphael/raphael.min.js"></script>
-        <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-        <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-        <!-- ChartJS -->
-        <script src="plugins/chart.js/Chart.min.js"></script>
-
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="dist/js/pages/dashboard2.js"></script>
-
-
-
 
 </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
