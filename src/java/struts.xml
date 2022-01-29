@@ -29,6 +29,18 @@
             <result name="REPORTPRODUCT">/customerProducts.jsp</result>
             <result name="LOGIN">/login.jsp</result>
         </action>
+        <action name="reportCustomer" class="com.exavalu.ers.actions.UserAction" method="executeCustomer">
+            <result name="REPORT">/adminCustomers.jsp</result>
+        </action>
+        
+        <action name="updateuser" class="com.exavalu.ers.actions.UserAction" method="updateModified">
+            <result name="UPDATE">/updateCustomers.jsp</result>
+        </action>
+        
+        <action name="deletecustomer" class="com.exavalu.ers.actions.UserAction" method="deleteCustomer">
+            <result name="DELETE">/deleteCustomers.jsp</result>
+        </action>
+        
         <action name="updateproduct" class="com.exavalu.ers.actions.ProductAction" method="productUpdate">
             <result name="UPDATEPRODUCT">/adminProductsUpdate.jsp</result>
         </action>

@@ -100,6 +100,70 @@ public class UserAction implements SessionAware {
         }
         return "LOGOUT";
     }
+    
+    private UserService us = new UserService();
+    public String updateModified() throws Exception {
+        try {System.out.println(userId);
+            if (submitType.equals("updatedata")) {
+                System.out.println(userId);
+                User user = us.fetchUserDetails(getUserId());
+                if (user != null) {
+                    setUserName(user.getUserName());
+                    setPassword(user.getPassword());
+                    setUserId(user.getUserId());
+                    setUserMobileNo(user.getUserMobileNo());
+                    setUserEmail(user.getUserEmail());
+                    setCity(user.getCity()); 
+                    setCountry(user.getCountry());
+                    setStatus(user.getStatus());
+                    setRoleId(user.getRoleId());
+                }
+            } else {
+                int i = us.updateUserDetails(userId, userName, password, userMobileNo, userEmail, city, country, status, roleId);
+                if (i > 0) {
+                    setMsg("Record Updated Successfuly");
+                } else {
+                    setMsg("error");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "UPDATE";
+    }
+    public String executeCustomer() throws Exception {
+        try {
+            setUserList(new ArrayList<>());
+            setUserList(UserService.report());
+
+            if (!userList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getUserList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "REPORT";
+    }
+    UserService usd = new UserService();
+    public String deleteCustomer() throws Exception {
+        try {
+            int isDeleted = usd.deleteUserDetails(userId);
+            if (isDeleted > 0) {
+                msg = "Record deleted successfully";
+            } else {
+                msg = "Some error";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "DELETE";
+    }
 
     // call a java service in my server or external server.
     /*       User myUser = new User();
