@@ -39,84 +39,87 @@
                 <!-- Content Header (Page header) -->
 
                 <!-- /.content-header -->
-                
+
                 <h2>Update Products</h2>
                 <form action=updateproduct method="post">
-                <font style="color: #a52834">
-                </font>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <tr>
-                            <td><b>Product Id:</b></td>
-                            <td><input type="text" name="productId" value='<s:property value="productId"/>'></td>
-                        </tr>
-                        <tr>
-                            <td><b>Product Name:</b></td>
-                            <td><input type="text" name="productName" value='<s:property value="productName"/>'></td>
-                        </tr>
-                        <tr>
-                            <td><b>Product make:</b></td>
-                            <td><input type="text"  name="productMake" value='<s:property value="productMake"/>'>
-                                <!--<input type="hidden" name="hdnuserName" value='-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Product Specification:</b></td>
-                            <td><input type="text"  name="productSpecification" value='<s:property value="productSpecification"/>'>
-                                <!--<input type="hidden" name="hdnuserName" value='>-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Product Price:</b></td>
-                            <td><input type="text" name="productPrice" value='<s:property value="productPrice"/>'></td>
-                        </tr>
-                        <tr>
-                            <td><b>Product Availability:</b></td>
-                            <td><input type="text" name="availability" value='<s:property value="availability"/>'></td>
-                        </tr>
-                    </table> 
+                    <font style="color: #a52834">
+                    </font>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <tr>
+                                <td><b>Product Id:</b></td>
+                                <td><input type="text" name="productId" value='<s:property value="productId"/>'></td>
+                            </tr>
+                            <tr>
+                                <td><b>Product Name:</b></td>
+                                <td><input type="text" name="productName" value='<s:property value="productName"/>'></td>
+                            </tr>
+                            <tr>
+                                <td><b>Product make:</b></td>
+                                <td><input type="text"  name="productMake" value='<s:property value="productMake"/>'>
+                                    <!--<input type="hidden" name="hdnuserName" value='-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Product Specification:</b></td>
+                                <td><input type="text"  name="productSpecification" value='<s:property value="productSpecification"/>'>
+                                    <!--<input type="hidden" name="hdnuserName" value='>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Product Price:</b></td>
+                                <td><input type="text" name="productPrice" value='<s:property value="productPrice"/>'></td>
+                            </tr>
+                            <tr>
+                                <td><b>Product Availability:</b></td>
+                                <td><input type="text" name="availability" value='<s:property value="availability"/>'></td>
+                            </tr>
+                        </table> 
 
-                    <button class="btn btn-outline-success" name="submitType" value="update" type="submit">Update</button>
+                        <button class="btn btn-outline-success" name="submitType" value="update" type="submit">Update</button>
+                        <a href="report">
+                            <button type="button" class="btn btn-outline-success">Report</button>
+                        </a>
 
-                    </form>
-                    <s:if test="ctr>0">
-                        <span style="color: red;"><s:property value="msg" /></span>
-                    </s:if>
-                    <s:else>
-                        <span style="color: red;"><s:property value="msg" /></span>
-                    </s:else>
-                    <!-- /.content -->
-                    </div>
+                </form>
+                <s:if test="ctr>0">
+                    <span style="color: red;"><s:property value="msg" /></span>
+                </s:if>
+                <s:else>
+                    <span style="color: red;"><s:property value="msg" /></span>
+                </s:else>
+                <!-- /.content -->
             </div>
-               
-                <jsp:include page="sidebar.jsp" />
+        </div>
 
-                <jsp:include page="footer.jsp" />
-            </div>
-            
-                
+        <jsp:include page="sidebar.jsp" />
 
-            <!-- jQuery -->
-            <script src="plugins/jquery/jquery.min.js"></script>
-            <!-- Bootstrap -->
-            <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <!-- overlayScrollbars -->
-            <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-            <!-- AdminLTE App -->
-            <script src="dist/js/adminlte.js"></script>
+        <jsp:include page="footer.jsp" />
+    </div>
 
-            <!-- PAGE PLUGINS -->
-            <!-- jQuery Mapael -->
-            <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-            <script src="plugins/raphael/raphael.min.js"></script>
-            <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-            <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-            <!-- ChartJS -->
-            <script src="plugins/chart.js/Chart.min.js"></script>
 
-            <!-- AdminLTE for demo purposes -->
-            <script src="dist/js/demo.js"></script>
-            <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-            <script src="dist/js/pages/dashboard2.js"></script>
 
-    </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard2.js"></script>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

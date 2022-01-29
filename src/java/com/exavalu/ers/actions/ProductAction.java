@@ -59,6 +59,63 @@ public class ProductAction extends UserAction {
         }
         return "REPORTPRODUCT";
     }
+    public String laptop() throws Exception {
+        setProductService(new ProductService());
+        try {
+            setProductList(new ArrayList<>());
+            setProductList(getProductService().showLaptop());
+            System.out.println(productList);
+
+            if (!productList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Products retrieve = " + getProductList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "REPORTPRODUCT";
+    }
+    public String desktop() throws Exception {
+        setProductService(new ProductService());
+        try {
+            setProductList(new ArrayList<>());
+            setProductList(getProductService().showDesktop());
+            System.out.println(productList);
+
+            if (!productList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Products retrieve = " + getProductList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "REPORTPRODUCT";
+    }
+    public String tablet() throws Exception {
+        setProductService(new ProductService());
+        try {
+            setProductList(new ArrayList<>());
+            setProductList(getProductService().showTablet());
+            System.out.println(productList);
+
+            if (!productList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Products retrieve = " + getProductList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "REPORTPRODUCT";
+    }
 
     public String productUpdate() throws Exception {
         daoo=new ProductService();
