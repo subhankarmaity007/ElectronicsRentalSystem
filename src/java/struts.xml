@@ -50,7 +50,18 @@
         <action name="report" class="com.exavalu.ers.actions.ProductAction" method="productReport">
             <result name="REPORTPRODUCT">/adminProducts.jsp</result>
         </action>
-
+        <action name="laptopShow" class="com.exavalu.ers.actions.ProductAction" method="laptop">
+            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
+         <action name="desktopShow" class="com.exavalu.ers.actions.ProductAction" method="desktop">
+            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
+         <action name="tabletShow" class="com.exavalu.ers.actions.ProductAction" method="tablet">
+            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
        
         
     </package>

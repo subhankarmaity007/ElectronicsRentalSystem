@@ -89,6 +89,108 @@ public class ProductService {
             }
         }
     }
+    public List showLaptop() throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        List<Products> productList = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM electronic_rental_system.products WHERE productName='Laptop'";
+            con = ConnectionManager.getConnection();
+            System.out.println("Connection is " + con);
+            PreparedStatement ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Products product = new Products();
+                product.setProductId(rs.getInt("productId"));
+                product.setProductName(rs.getString("productName"));
+                product.setProductMake(rs.getString("productMake"));
+                product.setProductSpecification(rs.getString("productSpecification"));
+                product.setProductPrice(rs.getDouble("productPrice"));
+                product.setAvailability(rs.getInt("availability"));
+                //Products.setProductImage(rs.getString("productImage"));
+
+                productList.add(product);
+            }
+            return productList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+
+    }
+    public List showDesktop() throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        List<Products> productList = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM electronic_rental_system.products WHERE productName='Desktop'";
+            con = ConnectionManager.getConnection();
+            System.out.println("Connection is " + con);
+            PreparedStatement ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Products product = new Products();
+                product.setProductId(rs.getInt("productId"));
+                product.setProductName(rs.getString("productName"));
+                product.setProductMake(rs.getString("productMake"));
+                product.setProductSpecification(rs.getString("productSpecification"));
+                product.setProductPrice(rs.getDouble("productPrice"));
+                product.setAvailability(rs.getInt("availability"));
+                //Products.setProductImage(rs.getString("productImage"));
+
+                productList.add(product);
+            }
+            return productList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+
+    }
+    public List showTablet() throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        List<Products> productList = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM electronic_rental_system.products WHERE productName='Tablet'";
+            con = ConnectionManager.getConnection();
+            System.out.println("Connection is " + con);
+            PreparedStatement ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Products product = new Products();
+                product.setProductId(rs.getInt("productId"));
+                product.setProductName(rs.getString("productName"));
+                product.setProductMake(rs.getString("productMake"));
+                product.setProductSpecification(rs.getString("productSpecification"));
+                product.setProductPrice(rs.getDouble("productPrice"));
+                product.setAvailability(rs.getInt("availability"));
+                //Products.setProductImage(rs.getString("productImage"));
+
+                productList.add(product);
+            }
+            return productList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+
+    }
     
     public int updateProduct(int productId, String productName, String productMake, double productPrice,
             int availability) throws SQLException, Exception {

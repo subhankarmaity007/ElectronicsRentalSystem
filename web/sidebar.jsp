@@ -133,9 +133,27 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="productAdmin" class="nav-link">
+                                <a href="laptopShow" class="nav-link">
                                     <i class="fas fa-desktop nav-icon" style="color:white"></i>
-                                    <p>Products</p>
+                                    <button type="button" class="btn btn-success"><p>Laptop</p></button>
+                                    
+                                    
+                                </a>
+                            </li>
+                             <li class="nav-item">
+                                <a href="desktopShow" class="nav-link">
+                                    <i class="fas fa-desktop nav-icon" style="color:white"></i>
+                                    <button type="button" class="btn btn-success"><p>Desktop</p></button>
+                                    
+                                    
+                                </a>
+                            </li>
+                             <li class="nav-item">
+                                <a href="tabletShow" class="nav-link">
+                                    <i class="fas fa-desktop nav-icon" style="color:white"></i>
+                                    <button type="button" class="btn btn-success"><p>Tablet</p></button>
+                                    
+                                    
                                 </a>
                             </li>
 
