@@ -314,7 +314,7 @@
                     </div><!--/. container-fluid -->
                 </section>
                 <!-- /.content -->
-            </div
+            </div>
             <jsp:include page="sidebar.jsp" />
 
             <jsp:include page="footer.jsp" />

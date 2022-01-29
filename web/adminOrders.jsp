@@ -4,9 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin Orders</title>
+        
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        
+
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
         <!-- Google Font: Source Sans Pro -->
@@ -35,41 +36,86 @@
                 <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" style="display: none;">
             </div>
             <jsp:include page="header.jsp" />
-            <div class="content-wrapper" style="min-height: 689px;">
+            
+          
+                 <div class="content-wrapper" style="min-height: 689px;">               
+
                 <!-- Content Header (Page header) -->
 
                 <!-- /.content-header -->
+                <h2>Order List</h2>
+                <font style="color: #a52834"><c:out value="${requestScope.MSG}"></c:out></font>
+                <div class="table-responsive">
+                    
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Order Id</th>
+                                <th scope="col">Product Id</th>
+                                <th scope="col">User Id </th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                
+                <tbody>
+                    <s:iterator value="orderList">
+                        <tr>
+                            <td><s:property value="orderId" /></td>
+                            <td><s:property value="productId"/></td>
+                            <td><s:property value="userId" /></td>
+                            <td><s:property value="startDate" /></td>
+                            <td><s:property value="endDate" /></td>
+                            <td><s:property value="quantity" /></td>
+                            
 
-              
-                <!-- /.content -->
-            </div
-            <jsp:include page="sidebar.jsp" />
-
-            <jsp:include page="footer.jsp" />
-
-        </div>
-            
-             <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.js"></script>
-
-        <!-- PAGE PLUGINS -->
-        <!-- jQuery Mapael -->
-        <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-        <script src="plugins/raphael/raphael.min.js"></script>
-        <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-        <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-        <!-- ChartJS -->
-        <script src="plugins/chart.js/Chart.min.js"></script>
-
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="dist/js/pages/dashboard2.js"></script>
+                            <td>
+                                <a class="btn btn-outline-success"  href="updateOrderdetails.action?submitType=updatedata&orderId=<s:property value="orderId"/>">
+                                    <button class="button-update">Update</button>
+                                </a>
+                                <a class="btn btn-outline-danger" href="deleterecord.action?orderId=<s:property value="orderId"/>">
+                                    <button class="button-delete">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                    </s:iterator>
+                </tbody>
+                </table>
+                   
+            </div>
+            <!-- /.content -->
         
-    </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+            
+           
+        <jsp:include page="sidebar.jsp" />
+
+        <jsp:include page="footer.jsp" />
+    </div>
+
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard2.js"></script>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

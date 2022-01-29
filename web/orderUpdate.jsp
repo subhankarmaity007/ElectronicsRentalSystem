@@ -3,16 +3,8 @@
 <html lang="en" style="height: auto;"><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin Orders</title>
         
-        <title>
-            <s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
-        <s:if test = "#role==1">
-                Admin Products
-            </s:if>
-                 <s:if test = "#role==2">
-                Customer Products
-            </s:if>
-                    </title>
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
@@ -44,61 +36,61 @@
                 <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" style="display: none;">
             </div>
             <jsp:include page="header.jsp" />
-            <s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
-            <s:if test = "#role==1">
+            
+          
                  <div class="content-wrapper" style="min-height: 689px;">               
 
                 <!-- Content Header (Page header) -->
 
                 <!-- /.content-header -->
-                <h2>Products List</h2>
-                <font style="color: #a52834"><c:out value="${requestScope.MSG}"></c:out></font>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product Id</th>
-                                <th scope="col">Product Name</th>
-                                <th scope="col">Product Make</th>
-                                <th scope="col">Product Specification</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Availability</th>
-                                <!--<th scope="col">Product Image</th>-->
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                </div>
-                <tbody>
-                    <s:iterator value="productList">
-                        <tr>
-                            <td><s:property value="productId" /></td>
-                            <td><s:property value="productName" /></td>
-                            <td><s:property value="productMake" /></td>
-                            <td><s:property value="productSpecification" /></td>
-                            <td><s:property value="productPrice" /></td>
-                            <td><s:property value="availability" /></td>
-
-                            <td>
-                                <a href="updateproduct.action?submitType=updatedata&productId=<s:property value="productId"/>">
-                                    <button class="button-update">Update</button>
-                                </a>
-                                <a class="fa fa-archive"   href="deleterecord.action?productId=<s:property value="productId"/>">
-                                    <button class="button-delete">Delete</button>
-                                </a>
-                            </td>
-                        </tr>
-                    </s:iterator>
-                </tbody>
-                </table>
-            </div>
+                <h2>Update Order</h2>
+                
+                
             <!-- /.content -->
-        </div>
-            </s:if>
-            <s:if test = "#role==2">
-                <div class="content-wrapper" style="min-height: 689px;">   
-                <h1> this is customer</h1>
-                </div>
-            </s:if>
+        <form action=updateOrderdetails method="post">
+            
+                <table>
+                    <tr>
+                        <td><b>Order Id</b></td>
+                        <td><input type="text" name="orderId" value='<s:property value="orderId"/>'></td>
+                    </tr>
+                    <tr>
+                        <td><b>product Id</b></td>
+                        <td><input type="text"  name="productId" value='<s:property value="productId"/>'>
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b> User Id</b></td>
+                        <td><input type="text" name="userId" value='<s:property value="userId"/>'></td>
+                    </tr>
+                    <tr>
+                        <td><b>Start Date</b></td>
+                        <td><input type="text" name="startDate" value='<s:property value="startDate"/>'></td>
+                    </tr>
+                    <tr>
+                        <td><b>End Date</b></td>
+                        <td><input type="text" name="endDate" value='<s:property value="endDate"/>'></td>
+                    </tr>
+                    <tr>
+                        <td><b>quantity</b></td>
+                        <td><input type="text" name="quantity" value='<s:property value="quantity"/>'></td>
+                    </tr>
+                </table> 
+                    
+            <button name="submitType" value="update" type="submit">Update</button>
+            
+             <a href="report"><input type="button" value="Cancel" name="cancel"/></a>
+          
+        </form>
+                     
+        <s:if test="ctr>0">
+            <span style="color: red;"><s:property value="msg" /></span>
+        </s:if>
+        <s:else>
+            <span style="color: red;"><s:property value="msg" /></span>
+        </s:else>
+            
            
         <jsp:include page="sidebar.jsp" />
 

@@ -3,10 +3,10 @@
 <html lang="en" style="height: auto;"><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin Dashboard</title>
+        <title>Customer Dashboard</title>
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        
+
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
         <!-- Google Font: Source Sans Pro -->
@@ -53,7 +53,7 @@
                                         <span class="info-box-text">Desktop</span>
                                         <span class="info-box-number">
                                             1,000
-                                            
+
                                         </span>
                                     </div>
                                     <!-- /.info-box-content -->
@@ -140,69 +140,38 @@
                                             <table class="table m-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Order ID</th>
-                                                        <th>Item</th>
-                                                        <th>Status</th>
-                                                        <th>Popularity</th>
+                                                        <th scope="col">Product Name</th>
+                                                        <th scope="col">Product Price</th>
+                                                        <th scope="col">Start Date</th>
+                                                        <th scope="col">End date</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                        <td>Call of Duty IV</td>
-                                                        <td><span class="badge badge-success">Shipped</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                        <td>Samsung Smart TV</td>
-                                                        <td><span class="badge badge-warning">Pending</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                        <td>iPhone 6 Plus</td>
-                                                        <td><span class="badge badge-danger">Delivered</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                        <td>Samsung Smart TV</td>
-                                                        <td><span class="badge badge-info">Processing</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                        <td>Samsung Smart TV</td>
-                                                        <td><span class="badge badge-warning">Pending</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                        <td>iPhone 6 Plus</td>
-                                                        <td><span class="badge badge-danger">Delivered</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                        <td>Call of Duty IV</td>
-                                                        <td><span class="badge badge-success">Shipped</span></td>
-                                                        <td>
-                                                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                                        </td>
-                                                    </tr>
+                                                    <s:iterator value="orderList2"  >
+
+                                                        <tr>
+
+                                                            <td><s:property value="productName"/></td>
+                                                            <td><s:property value="productPrice" /></td>
+                                                            <td><s:property value="startDate" /></td>
+                                                            <td><s:property value="endDate" /></td>
+
+
+
+
+                                                        </tr> 
+
+
+
+
+
+
+                                                    </s:iterator>
+
+
+
+
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -210,8 +179,8 @@
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer clearfix">
-                                        <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-                                        <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+<!--                                        <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
+                                        <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>-->
                                     </div>
                                     <!-- /.card-footer -->
                                 </div>
@@ -315,11 +284,11 @@
                 </section>
                 <!-- /.content -->
             </div
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="sidebar2.jsp" />
 
             <jsp:include page="footer.jsp" />
 
         </div>
-      
-        
+
+
     </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

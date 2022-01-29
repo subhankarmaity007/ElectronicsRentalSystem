@@ -21,7 +21,9 @@ public class Orders {
     private String startDate;
     private String endDate;
     private int quantity;
-
+    private String productName;
+    private String productMake;
+private double productPrice;
     /**
      * @return the orderId
      */
@@ -104,6 +106,48 @@ public class Orders {
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    /**
+     * @return the productName
+     */
+    public String getProductName() {
+        return productName;
+    }
+
+    /**
+     * @param productName the productName to set
+     */
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    /**
+     * @return the productMake
+     */
+    public String getProductMake() {
+        return productMake;
+    }
+
+    /**
+     * @param productMake the productMake to set
+     */
+    public void setProductMake(String productMake) {
+        this.productMake = productMake;
+    }
+
+    /**
+     * @return the productPrice
+     */
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    /**
+     * @param productPrice the productPrice to set
+     */
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
 
 }
