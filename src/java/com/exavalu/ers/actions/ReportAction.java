@@ -11,7 +11,7 @@ import org.apache.struts2.dispatcher.SessionMap;
  *
  * @author Ankita Saha
  */
-public class ReportAction extends ProductAction {
+public class ReportAction extends UserAction {
 
     private int productId;
     private String productName;
@@ -24,14 +24,43 @@ public class ReportAction extends ProductAction {
     private ResultSet rs = null;
     private Products product = null;
     private List<Products> productList = null;
-    private List<Object> newProductList = null;
-    private List<Object> mostOrderedList = null;
+    private List<Products> newProductList = null;
+    private List<Products> mostOrderedList = null;
     private boolean noData = false;
     private String submitType;
     private String msg1;
 
-    private SessionMap<String, Object> sessionMap;
+   
 
+    
+    
+    public String mostReport() throws Exception {
+
+        setReportService(new ReportService());
+         System.out.println("Most Ordered report action");
+
+        
+      
+            setMostOrderedList(new ArrayList<>());
+            setMostOrderedList(getReportService().mostOrderedProduct());
+            System.out.println(mostOrderedList);
+            
+            setProductList(new ArrayList<>());
+            setProductList(getReportService().outOfStock());
+            
+            
+
+            if (!mostOrderedList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Products retrieve = " + getMostOrderedList().size());
+                System.out.println("setting nodata=false");
+                
+            } else {
+                setNoData(true);
+            }
+            return "MOSTORDERED";
+        
+    }
     /**
      * @return the productId
      */
@@ -89,34 +118,7 @@ public class ReportAction extends ProductAction {
     }
 
 
-    public String mostOrderedProduct() throws Exception {
-
-        setReportService(new ReportService());
-         System.out.println("Most Ordered report action");
-
-        getSessionMap().get("roleId");
-        if (getSessionMap() != null) {
-            setMostOrderedList(new ArrayList<>());
-            setMostOrderedList(getReportService().mostOrderedProduct());
-            
-            setProductList(new ArrayList<>());
-            setProductList(getReportService().outOfStock());
-            
-            setNewProductList(new ArrayList<>());
-            setNewProductList(getReportService().newAddedProducts());
-
-            if (!mostOrderedList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Products retrieve = " + getMostOrderedList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
-            }
-            return "MOSTORDERED";
-        } else {
-            return "LOGIN";
-        }
-    }
+    
 
     public int getCtr() {
         return ctr;
@@ -216,20 +218,7 @@ public class ReportAction extends ProductAction {
         this.msg1 = msg1;
     }
 
-    /**
-     * @return the sessionMap
-     */
-    public SessionMap<String, Object> getSessionMap() {
-        return sessionMap;
-    }
-
-    /**
-     * @param sessionMap the sessionMap to set
-     */
-    public void setSessionMap(SessionMap<String, Object> sessionMap) {
-        this.sessionMap = sessionMap;
-    }
-
+    
     /**
      * @return the reportService
      */
@@ -245,36 +234,34 @@ public class ReportAction extends ProductAction {
     }
 
     /**
-     * @return the mostOrderedList
-     */
-    public List<Object> getMostOrderedList() {
-        return mostOrderedList;
-    }
-
-    /**
-     * @param mostOrderedList the mostOrderedList to set
-     */
-    public void setMostOrderedList(List<Object> mostOrderedList) {
-        this.mostOrderedList = mostOrderedList;
-    }
-
-    /**
      * @return the newProductList
      */
-    public List<Object> getNewProductList() {
+    public List<Products> getNewProductList() {
         return newProductList;
     }
 
     /**
      * @param newProductList the newProductList to set
      */
-    public void setNewProductList(List<Object> newProductList) {
+    public void setNewProductList(List<Products> newProductList) {
         this.newProductList = newProductList;
     }
 
     /**
-     * @return the newProductList
+     * @return the mostOrderedList
      */
+    public List<Products> getMostOrderedList() {
+        return mostOrderedList;
+    }
+
+    /**
+     * @param mostOrderedList the mostOrderedList to set
+     */
+    public void setMostOrderedList(List<Products> mostOrderedList) {
+        this.mostOrderedList = mostOrderedList;
+    }
+
+   
     
 
     

@@ -36,8 +36,10 @@ public class UserAction implements SessionAware {
     private int status;
     private int roleId;
     private boolean validUser;
-    private List<Object> newProductList = null;
-    private List<Object> mostOrderedList = null;
+//    private List<Object> newProductList = null;
+//    private List<Object> mostOrderedList = null;
+    
+    private List<Integer> itemsList = null;
 
     private static long serialVersionUID = 6329394260276112660L;
     private ResultSet rs = null;
@@ -62,17 +64,23 @@ public class UserAction implements SessionAware {
         setSessionMap((SessionMap<String, Object>) (SessionMap) map);
     }
 
-    public String execute() throws ClassNotFoundException, IOException {
-
-        if (isSession() == false) {
-             setReportService(new ReportService());
+    public String execute() throws ClassNotFoundException, IOException, Exception {
+        
+        System.out.println(getUserEmail());
+        System.out.println(getSessionMap().get("roleId"));
+        setReportService(new ReportService());
+        if (getSessionMap().get("roleId")== null) {
+             
             setSession(true);
             User myUser = new User();
             myUser.setUserEmail(getUserEmail());
             myUser.setPassword(getPassword());
             System.out.println(getUserEmail());
-
+            
+            itemsList= UserService.showType();
+            System.out.println(itemsList);
             User validuser = UserService.validateLoginCredentials(myUser);
+            
             System.out.println(validuser.getUserEmail());
             if (validuser.isValidUser()) {
                 getSessionMap().put("login", "true");
@@ -83,27 +91,7 @@ public class UserAction implements SessionAware {
                 if ((int) getSessionMap().get("roleId") == 1) {
                     return "ADMIN";
                 } else {
-                    setMostOrderedList(new ArrayList<>());
-                    try {
-                        setMostOrderedList(getReportService().mostOrderedProduct());
-                    } catch (Exception ex) {
-                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    setNewProductList(new ArrayList<>());
-                    try {
-                        setNewProductList(getReportService().newAddedProducts());
-                    } catch (Exception ex) {
-                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    if (!mostOrderedList.isEmpty()) {
-                        setNoData(false);
-                        System.out.println("Products retrieve = " + getMostOrderedList().size());
-                        System.out.println("setting nodata=false");
-                    } else {
-                        setNoData(true);
-                    }
+                    
                         return "CUSTOMER";
 
                 }
@@ -117,27 +105,7 @@ public class UserAction implements SessionAware {
             if ((int) getSessionMap().get("roleId") == 1) {
                 return "ADMIN";
             } else {
-                 setMostOrderedList(new ArrayList<>());
-                    try {
-                        setMostOrderedList(getReportService().mostOrderedProduct());
-                    } catch (Exception ex) {
-                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    setNewProductList(new ArrayList<>());
-                    try {
-                        setNewProductList(getReportService().newAddedProducts());
-                    } catch (Exception ex) {
-                        Logger.getLogger(UserAction.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    if (!mostOrderedList.isEmpty()) {
-                        setNoData(false);
-                        System.out.println("Products retrieve = " + getMostOrderedList().size());
-                        System.out.println("setting nodata=false");
-                    } else {
-                        setNoData(true);
-                    }
+                 
                 return "CUSTOMER";
             }
         }
@@ -145,9 +113,11 @@ public class UserAction implements SessionAware {
 
     public String logout() {
         if (getSessionMap() != null) {
+            System.out.println("session ending");
             setSession(false);
             getSessionMap().invalidate();
         }
+         System.out.println("session end");
         return "LOGOUT";
     }
 
@@ -624,33 +594,9 @@ public String deleteUser(){
         this.sessionMap = sessionMap;
     }
 
-    /**
-     * @return the newProductList
-     */
-    public List<Object> getNewProductList() {
-        return newProductList;
-    }
+   
 
-    /**
-     * @param newProductList the newProductList to set
-     */
-    public void setNewProductList(List<Object> newProductList) {
-        this.newProductList = newProductList;
-    }
-
-    /**
-     * @return the mostOrderedList
-     */
-    public List<Object> getMostOrderedList() {
-        return mostOrderedList;
-    }
-
-    /**
-     * @param mostOrderedList the mostOrderedList to set
-     */
-    public void setMostOrderedList(List<Object> mostOrderedList) {
-        this.mostOrderedList = mostOrderedList;
-    }
+    /*
 
     /**
      * @return the reportService
@@ -706,6 +652,20 @@ public String deleteUser(){
      */
     public void setUsd(UserService usd) {
         this.usd = usd;
+    }
+
+    /**
+     * @return the itemsList
+     */
+    public List<Integer> getItemsList() {
+        return itemsList;
+    }
+
+    /**
+     * @param itemsList the itemsList to set
+     */
+    public void setItemsList(List<Integer> itemsList) {
+        this.itemsList = itemsList;
     }
 
 }
