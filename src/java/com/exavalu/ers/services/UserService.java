@@ -231,4 +231,33 @@ public class UserService extends ActionSupport{
             }
         }
     }
+     public static List showType() throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        List<Integer> itemsList = new ArrayList<>();
+        try {
+            String sql = "SELECT productName, count(productName) as items FROM products GROUP BY productName";
+            con = ConnectionManager.getConnection();
+            System.out.println("Connection is " + con);
+            PreparedStatement ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+               
+                
+                //Products.setProductImage(rs.getString("productImage"));
+
+                itemsList.add(rs.getInt("items"));
+            }
+            return itemsList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+
+    }
 }

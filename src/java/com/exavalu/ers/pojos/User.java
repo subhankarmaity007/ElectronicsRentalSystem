@@ -11,6 +11,7 @@ package com.exavalu.ers.pojos;
  */
 public class User {
     private int userId;
+     private int items;
     private String userName;
     private String userMobileNo;
     private String userEmail;
@@ -165,5 +166,19 @@ public class User {
      */
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    /**
+     * @return the items
+     */
+    public int getItems() {
+        return items;
+    }
+
+    /**
+     * @param items the items to set
+     */
+    public void setItems(int items) {
+        this.items = items;
     }
 }

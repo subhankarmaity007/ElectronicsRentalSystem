@@ -2,7 +2,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 
+<s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
 
+           <s:if test = "#role!=1&&#role!=2">
+                
+                    <jsp:forward page="login.jsp"/>
+               
+            </s:if>
+<s:else>
 
 
 
@@ -40,6 +47,11 @@
         </li>
         </s:if>
              <s:if test = "#role==2">
+                 <li class="nav-item">
+            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="contactUs.jsp" role="button">
+                Contact Us
+            </a>
+        </li>
                   <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="logout" role="button">
                 <i class="fas fa-shopping-cart"></i>
@@ -65,5 +77,5 @@
 
 <!-- ./wrapper -->
 
-
+</s:else>
 
