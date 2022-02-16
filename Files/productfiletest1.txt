@@ -1,0 +1,10 @@
+productName	productMake	productSpecification	productPrice	availability
+Smart	Borland	magna.	799	96
+Mitsubishi Motors	Cakewalk	placerat, orci lacus vestibulum lorem,	716	91
+Peugeot	Finale	arcu. Sed eu nibh vulputate mauris sagittis placerat.	742	75
+Infiniti	Google	ac mattis semper, dui lectus	798	77
+Mercedes-Benz	Cakewalk	pharetra. Nam ac nulla. In tincidunt	805	85
+Peugeot	Cakewalk	quam quis diam. Pellentesque habitant morbi tristique senectus et	618	56
+Jeep	Chami	nibh sit amet orci. Ut	680	67
+Chevrolet	Microsoft	sit amet massa. Quisque porttitor eros nec	707	76
+Volkswagen	Google	Curabitur dictum. Phasellus in felis. Nulla tempor augue	588	99
