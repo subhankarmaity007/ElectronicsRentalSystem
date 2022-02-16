@@ -47,15 +47,14 @@ public class ReportService {
 
     }
 
-    public List mostOrderedProduct() throws SQLException, Exception {
+   public List mostOrderedProduct() throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
         
         List<Products> mostOrderedList = new ArrayList<>();
-        try {String sql = "SELECT * FROM products";
-//                    + "INNER JOIN products ON orders.productId=products.productId order by orders.quantity desc limit 10 "; 
-//            String sql = "SELECT products.productId, products.productName,products.productPrice, orders.quantity FROM orders\n"
-//                    + "INNER JOIN products ON orders.productId=products.productId order by orders.quantity desc limit 10 ";           
+        try {
+                  
+            String sql = "SELECT products.productId,products.productMake,products.productSpecification, products.productName,products.productPrice, orders.quantity FROM orders INNER JOIN products ON orders.productId=products.productId order by orders.quantity desc limit 10 ;";           
             con = ConnectionManager.getConnection();        
             System.out.println("Connection is " + con);         
             PreparedStatement ps = con.prepareStatement(sql);         
@@ -64,10 +63,12 @@ public class ReportService {
 
                 Products product = new Products();
                 product.setProductId(rs.getInt("productId"));
+                product.setProductMake(rs.getString("productMake"));
                 product.setProductName(rs.getString("productName"));
+                product.setProductSpecification(rs.getString("productSpecification"));
                 product.setProductPrice(rs.getDouble("productPrice"));
                 
-//                product.setQuantity(rs.getInt("quantity"));
+                product.setQuantity(rs.getInt("quantity"));
                 
                 mostOrderedList.add(product);
             }          

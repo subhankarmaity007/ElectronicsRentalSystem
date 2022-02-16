@@ -5,18 +5,16 @@
  */
 package com.exavalu.ers.actions;
 
-import com.opensymphony.xwork2.ActionSupport;
+import com.exavalu.ers.pojos.Products;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import com.exavalu.ers.pojos.User;
+import com.exavalu.ers.services.ProductService;
 import com.exavalu.ers.services.ReportService;
 import com.exavalu.ers.services.UserService;
-import com.exavalu.ers.servlets.LoginServlet;
 import java.io.IOException;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -28,6 +26,7 @@ public class UserAction implements SessionAware {
 
     private int userId;
     private String userName;
+    private String userDOB;
     private String userMobileNo;
     private String userEmail;
     private String password;
@@ -36,10 +35,21 @@ public class UserAction implements SessionAware {
     private int status;
     private int roleId;
     private boolean validUser;
+
+    private int quantity;
+
+    private int productId;
+
 //    private List<Object> newProductList = null;
 //    private List<Object> mostOrderedList = null;
-    
     private List<Integer> itemsList = null;
+    private List<Integer> typeList = null;
+
+    private ProductService productService = null;
+    private List<Products> productList = null;
+    private List<Products> productList2 = null;
+
+    private List<Products> totalProduct = null;
 
     private static long serialVersionUID = 6329394260276112660L;
     private ResultSet rs = null;
@@ -56,56 +66,71 @@ public class UserAction implements SessionAware {
 
     private boolean session = false;
 
-    private SessionMap<String, Object> sessionMap;
+    SessionMap<String, Object> sessionMap;
 
 //getters and setters  
     @Override
     public void setSession(Map<String, Object> map) {
         setSessionMap((SessionMap<String, Object>) (SessionMap) map);
+
     }
 
     public String execute() throws ClassNotFoundException, IOException, Exception {
-        
+
         System.out.println(getUserEmail());
         System.out.println(getSessionMap().get("roleId"));
         setReportService(new ReportService());
-        if (getSessionMap().get("roleId")== null) {
-             
-            setSession(true);
-            User myUser = new User();
-            myUser.setUserEmail(getUserEmail());
-            myUser.setPassword(getPassword());
-            System.out.println(getUserEmail());
-            
-            itemsList= UserService.showType();
-            System.out.println(itemsList);
-            User validuser = UserService.validateLoginCredentials(myUser);
-            
-            System.out.println(validuser.getUserEmail());
+
+        User myUser = new User();
+        myUser.setUserEmail(getUserEmail());
+        myUser.setPassword(getPassword());
+        System.out.println(getUserEmail());
+
+        setItemsList((List<Integer>) UserService.showType());
+        setTypeList(UserService.productNameType());
+        System.out.println(getItemsList());
+        System.out.println(getTypeList());
+        User validuser = UserService.validateLoginCredentials(myUser);
+
+        System.out.println(validuser.getUserEmail());
+        System.out.println(getUserName());
+        if (getSessionMap().get("roleId") == null) {
             if (validuser.isValidUser()) {
                 getSessionMap().put("login", "true");
                 getSessionMap().put("userEmail", validuser.getUserEmail());
                 getSessionMap().put("roleId", validuser.getRoleId());
+                getSessionMap().put("userName", validuser.getUserName());
+                getSessionMap().put("itemsList", getItemsList());
+                getSessionMap().put("typeList", getTypeList());
+                getSessionMap().put("userId", validuser.getUserId());
                 System.out.println(getSessionMap().get("roleId"));
 
                 if ((int) getSessionMap().get("roleId") == 1) {
+//                    setProductService(new ProductService());
+//                    setTotalProduct(new ArrayList<>());
+//                    setTotalProduct(getProductService().showTotalProduct());
                     return "ADMIN";
                 } else {
-                    
-                        return "CUSTOMER";
+                    setProductService(new ProductService());
+                    setProductList(new ArrayList<>());
+                    setProductList(getProductService().showTopProducts());
+
+                    return "CUSTOMER";
 
                 }
-            }
-            else {
+            } else {
+                setMsg("Email Id or Password is wrong.. Or you are not a active user..! Try Again..!");
                 return "LOGIN";
             }
-        
-        }
-        else {
+
+        } else {
+            setUserName(validuser.getUserName());
             if ((int) getSessionMap().get("roleId") == 1) {
                 return "ADMIN";
             } else {
-                 
+                setProductService(new ProductService());
+                setProductList(new ArrayList<>());
+                setProductList(getProductService().showTopProducts());
                 return "CUSTOMER";
             }
         }
@@ -117,7 +142,7 @@ public class UserAction implements SessionAware {
             setSession(false);
             getSessionMap().invalidate();
         }
-         System.out.println("session end");
+        System.out.println("session end");
         return "LOGOUT";
     }
 
@@ -131,6 +156,7 @@ public class UserAction implements SessionAware {
                 User user = getUs().fetchUserDetails(getUserId());
                 if (user != null) {
                     setUserName(user.getUserName());
+                    setUserDOB(user.getUserDOB());
                     setPassword(user.getPassword());
                     setUserId(user.getUserId());
                     setUserMobileNo(user.getUserMobileNo());
@@ -141,8 +167,8 @@ public class UserAction implements SessionAware {
                     setRoleId(user.getRoleId());
                 }
             } else {
-                int i = getUs().updateUserDetails(getUserId(), getUserName(), getPassword(), getUserMobileNo(), getUserEmail(), getCity(), getCountry(), getStatus(), getRoleId());
-                if (i > 0) {
+                setCtr(getUs().updateUserDetails(getUserId(), getUserName(), getUserDOB(), getPassword(), getUserMobileNo(), getUserEmail(), getCity(), getCountry(), getStatus(), getRoleId()));
+                if (getCtr() > 0) {
                     setMsg("Record Updated Successfuly");
                 } else {
                     setMsg("error");
@@ -153,10 +179,15 @@ public class UserAction implements SessionAware {
             e.printStackTrace();
         }
 
-        return "UPDATE";
+        if (getUserId() == (int) sessionMap.get("userId")) {
+            return "UPDATEPROFILE";
+        } else {
+            return "UPDATE";
+        }
+
     }
 
-    public String executeCustomer() throws Exception {
+    public String showAllCustomers() throws Exception {
         try {
             setUserList(new ArrayList<>());
             setUserList(UserService.report());
@@ -177,7 +208,7 @@ public class UserAction implements SessionAware {
 
     public String deleteCustomer() throws Exception {
         try {
-            int isDeleted = getUsd().deleteUserDetails(getUserId());
+            int isDeleted = getUsd().deleteUserDetails(getUserId(), getStatus());
             if (isDeleted > 0) {
                 setMsg("Record deleted successfully");
             } else {
@@ -186,7 +217,7 @@ public class UserAction implements SessionAware {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "DELETE";
+        return "REPORTUSER";
     }
 
     // call a java service in my server or external server.
@@ -218,14 +249,72 @@ public class UserAction implements SessionAware {
                 }
 }*/
     public String registerUser() throws Exception {
-        setCtr(getDao().addUser(getUserName(), getUserMobileNo(), getUserEmail(), getPassword(), getCity(), getCountry()));
+        setCtr(getDao().addUser(getUserName(), getUserDOB(), getUserMobileNo(), getUserEmail(), getPassword(), getCity(), getCountry()));
         if (getCtr() > 0) {
             setMsg("Registration Successfull");
         } else {
-            setMsg("Some error");
+            setMsg("Registration Failed..! Try Again");
         }
-        return "LOGIN";
+        return "REGISTER";
 
+    }
+
+    public String fetchAccount() throws Exception {
+
+        setUserList(new ArrayList<>());
+        User user = getUs().fetchAccountDetails(getUserEmail(), getUserDOB());
+
+        if (user != null) {
+            setUserName(user.getUserName());
+            setUserDOB(user.getUserDOB());
+            setPassword(user.getPassword());
+            setUserId(user.getUserId());
+            setUserMobileNo(user.getUserMobileNo());
+            setUserEmail(user.getUserEmail());
+            setCity(user.getCity());
+            setCountry(user.getCountry());
+            setStatus(user.getStatus());
+            setRoleId(user.getRoleId());
+            setMsg("Fetch Successfull");
+        } else {
+            setMsg("Can not fine any account..Related to this email or date of birth");
+        }
+
+        return "FETCHACCOUNT";
+    }
+
+    public String changePassword() throws Exception {
+        setCtr(dao.updatePassword(getUserEmail(), getPassword()));
+        if (getCtr() > 0) {
+            setMsg("Password Update Successfully.. Goto login");
+        } else {
+            setMsg("Password Update Failed..! Try Again");
+        }
+
+        return "FORGOTPASSWORD";
+    }
+
+    public String userProfile() throws Exception {
+        userId = (int) sessionMap.get("userId");
+        userservice = new UserService();
+        User user = getUs().fetchAccountProfile(userId);
+        if (user != null) {
+            setUserName(user.getUserName());
+            setUserDOB(user.getUserDOB());
+            setPassword(user.getPassword());
+            setUserId(user.getUserId());
+            setUserMobileNo(user.getUserMobileNo());
+            setUserEmail(user.getUserEmail());
+            setCity(user.getCity());
+            setCountry(user.getCountry());
+            setStatus(user.getStatus());
+            setRoleId(user.getRoleId());
+//            setMsg("Fetch Successfull");
+        } else {
+            setMsg("Can not fine any account..Related to this user");
+        }
+
+        return "PROFILE";
     }
 
     /*
@@ -594,8 +683,6 @@ public String deleteUser(){
         this.sessionMap = sessionMap;
     }
 
-   
-
     /*
 
     /**
@@ -666,6 +753,111 @@ public String deleteUser(){
      */
     public void setItemsList(List<Integer> itemsList) {
         this.itemsList = itemsList;
+    }
+
+    /**
+     * @return the typeList
+     */
+    public List<Integer> getTypeList() {
+        return typeList;
+    }
+
+    /**
+     * @param typeList the typeList to set
+     */
+    public void setTypeList(List<Integer> typeList) {
+        this.typeList = typeList;
+    }
+
+    /**
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @param quantity the quantity to set
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * @return the productId
+     */
+    public int getProductId() {
+        return productId;
+    }
+
+    /**
+     * @param productId the productId to set
+     */
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    /**
+     * @return the productService
+     */
+    public ProductService getProductService() {
+        return productService;
+    }
+
+    /**
+     * @param productService the productService to set
+     */
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
+
+    /**
+     * @return the productList
+     */
+    public List<Products> getProductList() {
+        return productList;
+    }
+
+    /**
+     * @param productList the productList to set
+     */
+    public void setProductList(List<Products> productList) {
+        this.productList = productList;
+    }
+
+    /**
+     * @return the productList2
+     */
+    public List<Products> getProductList2() {
+        return productList2;
+    }
+
+    /**
+     * @param productList2 the productList2 to set
+     */
+    public void setProductList2(List<Products> productList2) {
+        this.productList2 = productList2;
+    }
+
+    /**
+     * @return the userDOB
+     */
+    public String getUserDOB() {
+        return userDOB;
+    }
+
+    /**
+     * @param userDOB the userDOB to set
+     */
+    public void setUserDOB(String userDOB) {
+        this.userDOB = userDOB;
+    }
+
+    /**
+     * @param totalProduct the totalProduct to set
+     */
+    public void setTotalProduct(List<Products> totalProduct) {
+        this.totalProduct = totalProduct;
     }
 
 }

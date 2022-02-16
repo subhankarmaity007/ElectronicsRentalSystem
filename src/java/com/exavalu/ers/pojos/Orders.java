@@ -5,7 +5,7 @@
  */
 package com.exavalu.ers.pojos;
 
-
+import java.util.ArrayList;
 
 /**
  *
@@ -13,14 +13,19 @@ package com.exavalu.ers.pojos;
  */
 public class Orders {
 
-    
-
     private int orderId;
+    private double orderValue;
     private int productId;
     private int userId;
     private String startDate;
     private String endDate;
     private int quantity;
+    private String productName;
+    private String productMake;
+    private String userName;
+    private double productPrice;
+    private int availability;
+    private ArrayList<Products> products;
 
     /**
      * @return the orderId
@@ -104,6 +109,104 @@ public class Orders {
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    /**
+     * @return the productName
+     */
+    public String getProductName() {
+        return productName;
+    }
+
+    /**
+     * @param productName the productName to set
+     */
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    /**
+     * @return the productMake
+     */
+    public String getProductMake() {
+        return productMake;
+    }
+
+    /**
+     * @param productMake the productMake to set
+     */
+    public void setProductMake(String productMake) {
+        this.productMake = productMake;
+    }
+
+    /**
+     * @return the productPrice
+     */
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    /**
+     * @param productPrice the productPrice to set
+     */
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    /**
+     * @return the userName
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * @param userName the userName to set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    /**
+     * @return the availability
+     */
+    public int getAvailability() {
+        return availability;
+    }
+
+    /**
+     * @param availability the availability to set
+     */
+    public void setAvailability(int availability) {
+        this.availability = availability;
+    }
+
+    /**
+     * @return the products
+     */
+    public ArrayList<Products> getProducts() {
+        return products;
+    }
+
+    /**
+     * @param products the products to set
+     */
+    public void setProducts(ArrayList<Products> products) {
+        this.products = products;
+    }
+
+    /**
+     * @return the orderValue
+     */
+    public double getOrderValue() {
+        return orderValue;
+    }
+
+    /**
+     * @param orderValue the orderValue to set
+     */
+    public void setOrderValue(double orderValue) {
+        this.orderValue = orderValue;
     }
 
 }

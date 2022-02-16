@@ -6,39 +6,75 @@
     <!---<include file="example.xml"/>-->
     <!-- Configuration for the default package. -->
     <!--<constant name="struts.action.excludePattern" value="/LoginServlet*,/Logout*"/>-->
-    
+    <!--====Login===-->
     <package name="default" extends="struts-default">
         <action name="login" class="com.exavalu.ers.actions.UserAction" method="execute">
-            <result name="ADMIN">/adminIndex.jsp</result>
-            <result name="CUSTOMER">/adminIndex.jsp</result>
+            <result name="ADMIN">/dashboardBoth.jsp</result>
+            <result name="CUSTOMER">/dashboardBoth.jsp</result>
             <result name="LOGIN">/login.jsp</result>
         </action> 
+        
+        <!--=====Register user===-->
         <action name="registerUser" class="com.exavalu.ers.actions.UserAction" method="registerUser">
             <result name="LOGIN">/login.jsp</result>
+            <result name="REGISTER">/register.jsp</result>
         </action>
+        
+        <!--===Forgot Password===-->
+        <action name="fetchAccount" class="com.exavalu.ers.actions.UserAction" method="fetchAccount">
+            <result name="FETCHACCOUNT">/forgotPassword.jsp</result>
+        </action>
+        
+        <action name="changePassword" class="com.exavalu.ers.actions.UserAction" method="changePassword">
+            <result name="FORGOTPASSWORD">/forgotPassword.jsp</result>
+        </action>
+        
+        
+        <!--=====logout===-->
         <action name="logout" class="com.exavalu.ers.actions.UserAction" method="logout">
-            <result name="LOGOUT">/login.jsp</result>
+            <result name="LOGOUT">/index.jsp</result>
             
         </action> 
         
-        <action name="productAdmin" class="com.exavalu.ers.actions.ProductAction" method="productReport">
-            <result name="REPORTPRODUCT">/adminProducts.jsp</result>
-            <result name="LOGIN">/login.jsp</result>
-        </action>
-        <action name="productAdmin" class="com.exavalu.ers.actions.ProductAction" method="productReport">
-            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
-            <result name="LOGIN">/login.jsp</result>
-        </action>
-        <action name="reportCustomer" class="com.exavalu.ers.actions.UserAction" method="executeCustomer">
-            <result name="REPORT">/adminCustomers.jsp</result>
+        
+        
+        <action name="showCustomer" class="com.exavalu.ers.actions.UserAction" method="showAllCustomers">
+            <result name="REPORT">/customers.jsp</result>
         </action>
         
         <action name="updateuser" class="com.exavalu.ers.actions.UserAction" method="updateModified">
             <result name="UPDATE">/updateCustomers.jsp</result>
+            <result name="UPDATEPROFILE">/userProfile.jsp</result>
         </action>
         
         <action name="deletecustomer" class="com.exavalu.ers.actions.UserAction" method="deleteCustomer">
             <result name="DELETE">/deleteCustomers.jsp</result>
+            <result name="REPORTUSER" type="redirectAction">showCustomer.action</result>
+        </action>
+        
+        <!--===Order Admin Page===-->
+        <action name="orderAdmin" class="com.exavalu.ers.actions.OrderAction" method="orderReport">
+            <result name="ORDERREPORT">/orders.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
+        
+        
+        <action name="updateOrder" class="com.exavalu.ers.actions.OrderAction" method="orderUpdate">
+            <result name="UPDATE">/updateOrders.jsp</result>
+        </action>
+        
+         <action name="ShowOrder" class="com.exavalu.ers.actions.OrderAction" method="orderPlaced">
+            <result name="ORDERED">/orders.jsp</result>
+        </action>
+        
+        <action name="deleteOrder" class="com.exavalu.ers.actions.OrderAction" method="orderDelete">
+            <result name="DELETEORDER">/adminOrderDelete.jsp</result>
+        </action>
+        
+            <!--======Product Show===-->
+        <action name="productAdmin" class="com.exavalu.ers.actions.ProductAction" method="productReport">
+            <result name="REPORTPRODUCT">/products.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
         </action>
         
         <action name="updateproduct" class="com.exavalu.ers.actions.ProductAction" method="productUpdate">
@@ -46,26 +82,86 @@
         </action>
         <action name="deleterecord" class="com.exavalu.ers.actions.ProductAction" method="productDelete">
             <result name="DELETEPRODUCT">/adminProductsDelete.jsp</result>
+            <result name="REDIRECTPRODUCT" type="redirectAction">productAdmin.action</result>
         </action>
-        <action name="report" class="com.exavalu.ers.actions.ProductAction" method="productReport">
-            <result name="REPORTPRODUCT">/adminProducts.jsp</result>
-        </action>
+        
+        <!--==Customer Product Show==-->
         <action name="laptopShow" class="com.exavalu.ers.actions.ProductAction" method="laptop">
-            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
+            <result name="REPORTPRODUCT">/products.jsp</result>
             <result name="LOGIN">/login.jsp</result>
         </action>
-         <action name="desktopShow" class="com.exavalu.ers.actions.ProductAction" method="desktop">
-            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
+        <action name="desktopShow" class="com.exavalu.ers.actions.ProductAction" method="desktop">
+            <result name="REPORTPRODUCT">/products.jsp</result>
             <result name="LOGIN">/login.jsp</result>
         </action>
-         <action name="tabletShow" class="com.exavalu.ers.actions.ProductAction" method="tablet">
-            <result name="REPORTPRODUCT">/customerProducts.jsp</result>
+        <action name="tabletShow" class="com.exavalu.ers.actions.ProductAction" method="tablet">
+            <result name="REPORTPRODUCT">/products.jsp</result>
             <result name="LOGIN">/login.jsp</result>
         </action>
-       
+        <action name="showCustomerProduct" class="com.exavalu.ers.actions.ProductAction" method="showCustomerProduct">
+            <result name="REPORTPRODUCT">/products.jsp</result>
+            <result name="LOGIN">/login.jsp</result>
+        </action>
+       <!--===========-->
         <action name="reportAdmin" class="com.exavalu.ers.actions.ReportAction" method="mostReport" >
             <result name="MOSTORDERED">/adminReports.jsp</result>
-            
         </action>
+        <action name="aboutUs" class="com.exavalu.ers.actions.ReportAction" method="aboutUs" >
+            <result name="ABOUTUS">/aboutUs.jsp</result>
+        </action>
+        
+        <!--==Order Purpose==-->
+        <action name="AddProductToCart" class="com.exavalu.ers.actions.OrderAction" method="addProductToCart" >
+            <result name="ADDPRODUCTTOCART">/products.jsp</result>
+           <result name="ADDPRODUCTTOCART">/header.jsp</result>
+        </action>
+        
+       <action name="viewCart" class="com.exavalu.ers.actions.OrderAction" method="viewCart" >
+            <result name="VIEWCART">/placeOrder.jsp</result>
+            <result name="DASHBOARD">/dashboardBoth.jsp</result>
+        </action>
+        
+        <!--====Generate Receipt====-->
+        <action name="AddProductToReceipt" class="com.exavalu.ers.actions.OrderAction" method="addProductToReciept" >
+            <result name="ADDPRODUCTTORECIEPT">/placeOrder.jsp</result>
+           <result name="ADDPRODUCTTORECIEPT">/header.jsp</result>
+        </action>
+        
+       <action name="viewPrice" class="com.exavalu.ers.actions.OrderAction" method="viewReceipt" >
+            <result name="VIEWRECIEPT">/viewPrice.jsp</result>
+        </action>
+        
+<!--         <action name="viewPrice" class="com.exavalu.ers.actions.OrderAction" method="viewCart" >
+            <result name="VIEWCART">/viewPrice.jsp</result>
+        </action>
+        <action name="ShowTotalPrice" class="com.exavalu.ers.actions.OrderAction" method="ShowTotalPrice" >
+            <result name="SHOWTOTALPRICE">/placeOrder.jsp</result>
+        </action>-->
+         <!--====Place Order====-->
+        <action name="placeOrder" class="com.exavalu.ers.actions.OrderAction" method="placeOrder" >
+            <result name="PLACEORDER">/orders.jsp</result>
+        </action>
+        
+        <!-- Dummy Page Call-->
+        
+        <action name="addProduct" class="com.exavalu.ers.actions.ProductAction" method="addProduct" >
+            <result name="ADDPRODUCT">/addProducts.jsp</result>
+        </action>
+        <!-- End -->
+        
+        <!-- Product Register -->
+        <action name="registerProduct" class="com.exavalu.ers.actions.ProductAction" method="registerProduct" >
+            <result name="ADDPRODUCT">/addProducts.jsp</result>
+        </action>
+        
+        <!--Bulk Product Upload-->
+        <action name="fileupload" class="com.exavalu.ers.actions.ProductAction" method="fileUploadFromPC" >
+            <result name="ADDPRODUCT">/addProducts.jsp</result>
+        </action>
+        <!--====Edit User/Admin===-->
+        <action name="userProfile" class="com.exavalu.ers.actions.UserAction" method="userProfile" >
+            <result name="PROFILE">/userProfile.jsp</result>
+        </action>
+        
     </package>
 </struts>

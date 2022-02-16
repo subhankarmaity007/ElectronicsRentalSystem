@@ -5,7 +5,8 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +20,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
         <!--Custom styles-->
-        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
     </head>
     <body>
         <div class="container">
@@ -39,8 +40,15 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" name="userName" class="form-control" placeholder="User Name" required>
+                                <input type="text" name="userName" class="form-control" placeholder="Full Name" required>
 
+                            </div>
+                            <br>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                </div>
+                                <input type="date" name="userDOB" class="form-control"  required>
                             </div>
                             <br>
                             <div class="input-group form-group">
@@ -79,9 +87,22 @@
                             </div>
                             <br>
                             <div class="form-group">
+
                                 <input type="submit" value="Register" class="btn float-right login_btn">
                             </div>
+
                         </form>
+                        <div class="form-group">
+                        <a href="login.jsp">
+                            <button class="btn btn-primary" ><i class="fa fa-chevron-left" aria-hidden="true">&nbsp;</i>Login</button>
+                        </a>
+                        </div>
+                        <s:if test="ctr>0">
+                            <span style="color: white;"><s:property value="msg" /></span>
+                        </s:if>
+                        <s:else>
+                            <span style="color: white;"><s:property value="msg" /></span>
+                        </s:else>
                     </div>
                 </div>
             </div>

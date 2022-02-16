@@ -17,9 +17,13 @@ public class Products {
     private double price;
     private int availability;
     private int quantity;
-    private boolean status;
+    private int status;
     private String productImage;
     private String productSpecification;
+     private String startDate;
+    private String endDate;
+    private int totalProduct;
+    
     /**
      * @return the productId
      */
@@ -106,19 +110,7 @@ public class Products {
         this.productImage = productImage;
     }
 
-    /**
-     * @return the status
-     */
-    public boolean isStatus() {
-        return status;
-    }
-
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
+    
 
     /**
      * @return the productSpecification
@@ -160,6 +152,62 @@ public class Products {
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    /**
+     * @return the startDate
+     */
+    public String getStartDate() {
+        return startDate;
+    }
+
+    /**
+     * @param startDate the startDate to set
+     */
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    /**
+     * @return the endDate
+     */
+    public String getEndDate() {
+        return endDate;
+    }
+
+    /**
+     * @param endDate the endDate to set
+     */
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    /**
+     * @return the status
+     */
+    public int getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the totalProduct
+     */
+    public int getTotalProduct() {
+        return totalProduct;
+    }
+
+    /**
+     * @param totalProduct the totalProduct to set
+     */
+    public void setTotalProduct(int totalProduct) {
+        this.totalProduct = totalProduct;
     }
     
     

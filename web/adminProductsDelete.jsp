@@ -27,7 +27,7 @@
 
         <style type="text/css">/* Chart.js */
             @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style></head>
-    <body class="dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" data-new-gr-c-s-check-loaded="14.1046.0" data-gr-ext-installed="" style="height: auto;">
+    <body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" data-new-gr-c-s-check-loaded="14.1046.0" data-gr-ext-installed="" style="height: auto;">
         <div class="wrapper">
 
             <!-- Preloader -->
@@ -40,18 +40,13 @@
 
                 <!-- /.content-header -->
 
-                <h2>Products Deleted</h2>
-                <form action=deleteproductrecord method="post">
-                    <font style="color: #a52834">
-                    </font>
-                    <div class="table-responsive">
+                
+               
                         <span><s:property value="msg1" /></span><br><br>
-                            <a href="report">
-                                <button type="button">Report</button>
-                            </a>
+                            <a href="productAdmin"><input  class="btn btn-outline-success" type="button" value="Back To Product" name="cancel"/></a>
                             <!-- /.content -->
                     </div>
-            </div>
+            
 
             <jsp:include page="sidebar.jsp" />
 

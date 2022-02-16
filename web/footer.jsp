@@ -9,6 +9,16 @@
             </s:if>
 <s:else>
             <!-- Main Footer -->
+            <style>body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+</style>
             <footer class="main-footer">
                 <strong>Copyright © 2022 <a href="#">Electronics Rental System</a>.</strong>
                 All rights reserved.

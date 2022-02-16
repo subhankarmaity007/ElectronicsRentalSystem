@@ -4,7 +4,7 @@
 
 <s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
 
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
         <!--   <img src="./img/exavaluLogo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
@@ -15,11 +15,9 @@
     <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition"><div class="os-resize-observer-host observed"><div class="os-resize-observer" style="left: 0px; right: auto;"></div></div><div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 631px;"></div><div class="os-padding"><div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll;"><div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                        </div>
+
                         <div class="info">
-                            <a href="#" class="d-block">Alexander Pierce</a>
+                            <a href="#" class="d-block"><s:property value='%{sessionMap.get("userName")}' /></a>
                         </div>
                     </div>
 
@@ -37,7 +35,7 @@
 
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
-                        
+
 
 
 
@@ -48,9 +46,9 @@
 </aside>
 
 
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="https://www.exavalu.com/" class="brand-link">
         <!--   <img src="./img/exavaluLogo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
         <span class="brand-text font-weight-light">Exavalu</span>
     </a>
@@ -59,11 +57,9 @@
     <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition"><div class="os-resize-observer-host observed"><div class="os-resize-observer" style="left: 0px; right: auto;"></div></div><div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 631px;"></div><div class="os-padding"><div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll;"><div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                        </div>
+
                         <div class="info">
-                            <a href="#" class="d-block">Alexander Pierce</a>
+                            <a href="#" class="d-block"><s:property value='%{sessionMap.get("userName")}' /></a>
                         </div>
                     </div>
 
@@ -82,94 +78,93 @@
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <s:if test = "#role==1">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-                                 with font-awesome or any other icon font library -->
-                            <li class="nav-item">
-                                <a href="reportCustomer" class="nav-link">
-                                    <i class="fas fa-users nav-icon" style="color:white"></i>
-                                    <p>Customers</p>
-                                </a>
-                            </li>
-                            <li class="nav-item menu-open">
-                                <a href="adminOrders.jsp" class="nav-link">
-                                    <i class="nav-icon fas fa-shopping-cart" style="color:white"></i>
-                                    <p>
-                                        Orders
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                                <!-- Add icons to the links using the .nav-icon class
+                                     with font-awesome or any other icon font library -->
+                                <li class="nav-item">
+                                    <a href="showCustomer" class="nav-link">
+                                        <i class="fas fa-users nav-icon"></i>
+                                        <p>Users</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orderAdmin" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-cart " ></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productAdmin" class="nav-link">
+                                        <i class="fas fa-desktop nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
 
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="productAdmin" class="nav-link">
-                                    <i class="fas fa-desktop nav-icon" style="color:white"></i>
-                                    <p>Products</p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item menu-open">
-                                <a href="reportAdmin" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        Reports
-
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
+                                <li class="nav-item">
+                                    <a href="reportAdmin" class="nav-link">
+                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>Reports</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="addProduct" class="nav-link">
+                                        <i class="nav-icon fas fa-plus-circle"></i><p>Add Product</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="userProfile" class="nav-link">
+                                        <i class="nav-icon fas fa-user-circle"></i>
+                                        <p>My Profile</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </s:if>
                         <s:if test = "#role==2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-                                 with font-awesome or any other icon font library -->
-                            
-                            <li class="nav-item menu-open">
-                                <a href="adminOrders.jsp" class="nav-link">
-                                    <i class="nav-icon fas fa-shopping-cart" style="color:white"></i>
-                                    <p>
-                                        Orders
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                                <!-- Add icons to the links using the .nav-icon class
+                                     with font-awesome or any other icon font library -->
 
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="laptopShow" class="nav-link">
-                                    <i class="fas fa-desktop nav-icon" style="color:white"></i>
-                                    <button type="button" class="btn btn-success"><p>Laptop</p></button>
-                                    
-                                    
-                                </a>
-                            </li>
-                             <li class="nav-item">
-                                <a href="desktopShow" class="nav-link">
-                                    <i class="fas fa-desktop nav-icon" style="color:white"></i>
-                                    <button type="button" class="btn btn-success"><p>Desktop</p></button>
-                                    
-                                    
-                                </a>
-                            </li>
-                             <li class="nav-item">
-                                <a href="tabletShow" class="nav-link">
-                                    <i class="fas fa-desktop nav-icon" style="color:white"></i>
-                                    <button type="button" class="btn btn-success"><p>Tablet</p></button>
-                                    
-                                    
-                                </a>
-                            </li>
+                                <li class="nav-item">
+                                    <a href="ShowOrder" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-cart"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                              
+                                <li class="nav-item">
+                                    <a href="showCustomerProduct.action?productName=Laptop" class="nav-link link-primary ">
+                                        <i class="fas fa-laptop nav-icon"></i>
+                                        <p>Laptop</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="showCustomerProduct.action?productName=Desktop" class="nav-link link-primary ">
+                                        <i class="fas fa-desktop nav-icon" ></i>
+                                        <p>Desktop</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="showCustomerProduct.action?productName=Tablet" class="nav-link link-primary ">
+                                        <i class="fas fa-tablet-alt nav-icon" ></i>
+                                        <p>Tablet</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="reportAdmin" class="nav-link">
+                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                        <p> Reports</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="userProfile" class="nav-link">
+                                        <i class="nav-icon fas fa-user-circle"></i>
+                                        <p>My Profile</p>
+                                    </a>
+                                </li>
+                            </ul>
 
-                            <li class="nav-item menu-open">
-                                <a href="mostReportAdmin" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        Reports
-
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                        
-                        
                         </s:if>
+
 
 
 

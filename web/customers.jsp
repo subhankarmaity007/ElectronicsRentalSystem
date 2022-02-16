@@ -3,11 +3,13 @@
 <html lang="en" style="height: auto;"><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Customers</title>
+        <title>Admin Customers</title>
 
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        
+
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src='https://code.jquery.com/jquery-3.5.1.js' crossorigin='anonymous'></script>
+
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
@@ -17,7 +19,9 @@
         <link rel="stylesheet" href="./css/OverlayScrollbars.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="./css/adminlte.min.css">
-
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+        <!--===Data Table==-->
+        <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">-->
 
 
 
@@ -35,21 +39,125 @@
                 <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" style="display: none;">
             </div>
             <jsp:include page="header.jsp" />
-            <div class="content-wrapper" style="min-height: 689px;">
-                <!-- Content Header (Page header) -->
 
-                <!-- /.content-header -->
+            <s:set var = "role"  value = '%{sessionMap.get("roleId")}'/>
+            <s:if test = "#role==1">
+                <div class="content-wrapper" style="min-height: 689px;">
+                    <!-- Content Header (Page header) -->
 
-              
-                <!-- /.content -->
-            </div
+                    <!-- /.content-header -->
+                    <div class="container-fluid py-4">
+                        <div class="row mb-4">
+                            <div class="col-lg col-md-8 mb-md-6 mb-4">
+                                <div class="card card-responsive">
+                                    <div class="card-header border-transparent">
+                                        <h2 class="card-title text-primary text-center"><b>User Details</b></h2>
+
+                                        <!--                                        <div class="card-tools">
+                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                                                        <i class="fas fa-minus"></i>
+                                                                                    </button>
+                                                                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                                                        <i class="fas fa-times"></i>
+                                                                                    </button>
+                                                                                </div>-->
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body p-0">
+
+                                        <div class="table-responsive">
+                                            <table  id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" style="display:none;">User Id</th>
+                                                        <th scope="col">Full Name</th>
+                                                        <th scope="col">Date Of Birth</th>
+                                                        <th scope="col">Mobile No.</th>
+                                                        <th scope="col">Email Id</th>
+                                                        <!--                                                        <th scope="col">Password</th>-->
+                                                        <th scope="col">City</th>
+                                                        <th scope="col">Country</th>
+                                                        <th scope="col">Role</th>
+                                                        <th scope="col">Status</th>
+
+                                                        <!--<th scope="col">Product Image</th>-->
+                                                        <th scope="col">Actions</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <s:iterator value="userList">
+                                                        <tr>
+                                                            <td style="display:none;"><s:property value="userId" /></td>
+                                                            <td><s:property value="userName" /></td>
+                                                            <td><s:property value="userDOB" /></td>
+                                                            <td><s:property value="userMobileNo" /></td>
+                                                            <td><s:property value="userEmail" /></td>
+                                                            <!--<td><s:property value="password" /></td>-->
+                                                            <td><s:property value="city" /></td>
+                                                            <td><s:property value="country" /></td>
+                                                            <td class="activeInactive" > 
+                                                                <s:if test="%{roleId ==1}">
+                                                                    <p>Admin</p>
+                                                                </s:if>
+                                                                <s:if test="%{roleId ==2}">
+                                                                    <p>Customer</p>
+                                                                </s:if>
+                                                            </td>
+                                                            <td class="activeInactive" style="text-align: center;"> 
+                                                                <s:if test="%{status ==1}">
+                                                                    <b><i><p style="background-color: #0af545; color: white;">Active</p></i></b> 
+                                                                </s:if>
+                                                                <s:if test="%{status ==0}">
+                                                                    <b><i><p style="background-color: #f5704c; color: white;">Inactive</p></i></b> 
+                                                                </s:if>
+                                                            </td>
+
+
+                                                            <td>
+                                                                <a href="updateuser.action?submitType=updatedata&userId=<s:property value="userId"/>">
+                                                                    <i class="fas fa-edit">Edit</i>
+                                                                    <!--<button class="btn btn-success">Update</button>-->
+                                                                </a>
+                                                                <a href="deletecustomer.action?userId=<s:property value="userId"/>&status=<s:property value="status" />">
+                                                                    <i class="fas fa-toggle-on">Toggle</i>
+                                                                    <!--<button class="btn btn-danger">Delete</button>-->
+                                                                </a>
+
+                                                            </td>
+
+
+                                                        </tr>
+                                                    </s:iterator>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- /.content -->
+                </div>
+            </s:if>
+
             <jsp:include page="sidebar.jsp" />
 
             <jsp:include page="footer.jsp" />
 
         </div>
-            
-             <!-- jQuery -->
+        <script>
+            $(document).ready(function () {
+                $('#dtBasicExample').DataTable({
+                    "pagingType": "full_numbers"
+                });
+            });
+        </script>
+
+        <!-- jQuery -->
         <script src="plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -71,5 +179,13 @@
         <script src="dist/js/demo.js"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="dist/js/pages/dashboard2.js"></script>
-        
+        <script src="js/bootstrap.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+        <!--<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.js"></script>-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
     </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

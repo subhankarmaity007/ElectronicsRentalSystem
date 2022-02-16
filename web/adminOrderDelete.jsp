@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin Orders</title>
 
+
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        
+
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
         <!-- Google Font: Source Sans Pro -->
@@ -35,41 +36,47 @@
                 <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" style="display: none;">
             </div>
             <jsp:include page="header.jsp" />
-            <div class="content-wrapper" style="min-height: 689px;">
+
+
+            <div class="content-wrapper" style="min-height: 689px;">               
+
                 <!-- Content Header (Page header) -->
 
                 <!-- /.content-header -->
 
-              
                 <!-- /.content -->
-            </div
-            <jsp:include page="sidebar.jsp" />
 
-            <jsp:include page="footer.jsp" />
+               
 
-        </div>
-            
-             <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.js"></script>
+<span><s:property value="msg1" /></span><br><br>
+                <a href="orderAdmin"><input  class="btn btn-outline-success" type="button" value="Back To Order" name="cancel"/></a>
+                    <jsp:include page="sidebar.jsp" />
 
-        <!-- PAGE PLUGINS -->
-        <!-- jQuery Mapael -->
-        <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-        <script src="plugins/raphael/raphael.min.js"></script>
-        <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-        <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-        <!-- ChartJS -->
-        <script src="plugins/chart.js/Chart.min.js"></script>
+                <jsp:include page="footer.jsp" />
+            </div>
 
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="dist/js/pages/dashboard2.js"></script>
-        
+
+            <!-- jQuery -->
+            <script src="plugins/jquery/jquery.min.js"></script>
+            <!-- Bootstrap -->
+            <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- overlayScrollbars -->
+            <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="dist/js/adminlte.js"></script>
+
+            <!-- PAGE PLUGINS -->
+            <!-- jQuery Mapael -->
+            <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+            <script src="plugins/raphael/raphael.min.js"></script>
+            <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+            <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+            <!-- ChartJS -->
+            <script src="plugins/chart.js/Chart.min.js"></script>
+
+            <!-- AdminLTE for demo purposes -->
+            <script src="dist/js/demo.js"></script>
+            <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+            <script src="dist/js/pages/dashboard2.js"></script>
+
     </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

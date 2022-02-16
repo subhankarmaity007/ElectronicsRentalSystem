@@ -13,6 +13,7 @@ public class User {
     private int userId;
      private int items;
     private String userName;
+    private String userDOB;
     private String userMobileNo;
     private String userEmail;
     private String password;
@@ -180,5 +181,19 @@ public class User {
      */
     public void setItems(int items) {
         this.items = items;
+    }
+
+    /**
+     * @return the userDOB
+     */
+    public String getUserDOB() {
+        return userDOB;
+    }
+
+    /**
+     * @param userDOB the userDOB to set
+     */
+    public void setUserDOB(String userDOB) {
+        this.userDOB = userDOB;
     }
 }

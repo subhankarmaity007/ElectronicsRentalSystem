@@ -183,7 +183,7 @@
         </s:if>
 
         <s:if test = "#role==2">
-            <div class="content-wrapper" style="min-height: 689px;">   
+           <div class="content-wrapper" style="min-height: 689px;">   
                 <div class="container-fluid py-4">
                    
                    
@@ -208,14 +208,17 @@
                                         <table class="table m-0">
                                             <thead>
                                                 <tr>
-                                                    <th>Product ID</th>
+                                                    
                                                     <th>Product Name</th>
+                                                    <th>Product Make</th>
+                                                    <th>Product Specification</th>
                                                     <th>Product Price</th>
                                             <tbody>
-                                                <s:iterator value="favProducts">
+                                                <s:iterator value="mostOrderedList">
                                                     <tr>
-                                                        <td><s:property value="productId" /></td>
                                                         <td><s:property value="productName" /></td>
+                                                        <td><s:property value="productMake" /></td>
+                                                        <td><s:property value="productSpecification" /></td>
                                                         <td><s:property value="productPrice" /></td>
 
 
@@ -236,50 +239,7 @@
                         </div>
                         
 
-                        <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
 
-                            <div class="card">
-                                <div class="card-header border-transparent">
-                                    <h3 class="card-title">Out of Stock Products</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <table class="table m-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Product ID</th>
-                                                    <th>Product Name</th>
-                                                    <th>Product Price</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <s:iterator value="myOrders">
-                                                    <tr>
-                                                        <td><s:property value="productId" /></td>
-                                                        <td><s:property value="productName" /></td>
-                                                        <td><s:property value="productPrice" /></td>
-                                                    </tr>
-                                                </s:iterator>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
 
                 </div>

@@ -19,12 +19,26 @@ import org.apache.struts2.dispatcher.SessionMap;
  * @author deepd
  */
 public class ProductAction extends UserAction {
+
+    /**
+     * @return the status
+     */
+    public int getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
     private int productId;
     private String productName;
     private String productMake;
     private double productPrice;
     private int availability;
-    private boolean status;
+    private int status;
     private String productImage;
     private String productSpecification;
     private String msg = "";
@@ -41,127 +55,239 @@ public class ProductAction extends UserAction {
     private String submitType;
     private String msg1;
 
+    private int quantity;
+    
+    private String fileName;  // For file upload
+
     public String productReport() throws Exception {
-        setProductService(new ProductService());
-        try {
-            setProductList(new ArrayList<>());
-            setProductList(getProductService().showAllProducts());
 
-            if (!productList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Products retrieve = " + getProductList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "REPORTPRODUCT";
-    }
-    public String laptop() throws Exception {
-        setProductService(new ProductService());
-        try {
-            setProductList(new ArrayList<>());
-            setProductList(getProductService().showLaptop());
-            System.out.println(productList);
+        if (getSessionMap().get("roleId") != null) {
+            setProductService(new ProductService());
+            try {
+                setProductList(new ArrayList<>());
+                setProductList(getProductService().showAllProducts());
 
-            if (!productList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Products retrieve = " + getProductList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
+                if (!productList.isEmpty()) {
+                    setNoData(false);
+                    System.out.println("Products retrieve = " + getProductList().size());
+                    System.out.println("setting nodata=false");
+                } else {
+                    setNoData(true);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return "REPORTPRODUCT";
+        } else {
+            return "LOGIN";
         }
-        return "REPORTPRODUCT";
     }
-    public String desktop() throws Exception {
-        setProductService(new ProductService());
-        try {
-            setProductList(new ArrayList<>());
-            setProductList(getProductService().showDesktop());
-            System.out.println(productList);
 
-            if (!productList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Products retrieve = " + getProductList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "REPORTPRODUCT";
-    }
-    public String tablet() throws Exception {
-        setProductService(new ProductService());
-        try {
-            setProductList(new ArrayList<>());
-            setProductList(getProductService().showTablet());
-            System.out.println(productList);
+//    public String laptop() throws Exception {
+//
+//        if (getSessionMap().get("roleId") != null) {
+//            setProductService(new ProductService());
+//            try {
+//                setProductList(new ArrayList<>());
+//                setProductList(getProductService().showLaptop());
+//                System.out.println(getProductList());
+//
+//                if (!productList.isEmpty()) {
+//                    setNoData(false);
+//                    System.out.println("Products retrieve = " + getProductList().size());
+//                    System.out.println("setting nodata=false");
+//                } else {
+//                    setNoData(true);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return "REPORTPRODUCT";
+//        } else {
+//            return "LOGIN";
+//        }
+//    }
+//
+//    public String desktop() throws Exception {
+//        if (getSessionMap().get("roleId") != null) {
+//            setProductService(new ProductService());
+//            try {
+//                setProductList(new ArrayList<>());
+//                setProductList(getProductService().showDesktop());
+//                System.out.println(getProductList());
+//
+//                if (!productList.isEmpty()) {
+//                    setNoData(false);
+//                    System.out.println("Products retrieve = " + getProductList().size());
+//                    System.out.println("setting nodata=false");
+//                } else {
+//                    setNoData(true);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return "REPORTPRODUCT";
+//        } else {
+//            return "LOGIN";
+//        }
+//
+//    }
+//    public String tablet() throws Exception {
+//        if (getSessionMap().get("roleId") != null) {
+//
+//            setProductService(new ProductService());
+//            try {
+//                setProductList(new ArrayList<>());
+//                setProductList(getProductService().showTablet());
+//                System.out.println(getProductList());
+//
+//                if (!productList.isEmpty()) {
+//                    setNoData(false);
+//                    System.out.println("Products retrieve = " + getProductList().size());
+//                    System.out.println("setting nodata=false");
+//                } else {
+//                    setNoData(true);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return "REPORTPRODUCT";
+//        } else {
+//            return "LOGIN";
+//        }
+//    }
 
-            if (!productList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Products retrieve = " + getProductList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
+    public String showCustomerProduct() throws Exception {
+        if (getSessionMap().get("roleId") != null) {
+
+            setProductService(new ProductService());
+            try {
+                setProductList(new ArrayList<>());
+                setProductList(getProductService().showCustomerProductALL(productName));
+                System.out.println(getProductList());
+
+                if (!productList.isEmpty()) {
+                    setNoData(false);
+                    System.out.println("Products retrieve = " + getProductList().size());
+                    System.out.println("setting nodata=false");
+                } else {
+                    setNoData(true);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return "REPORTPRODUCT";
+        } else {
+            return "LOGIN";
         }
-        return "REPORTPRODUCT";
     }
+    
+   
 
     public String productUpdate() throws Exception {
-        daoo=new ProductService();
-        try {
-            if (submitType.equals("updatedata")) {
-                Products product = daoo.fetchProductDetails(productId);
-                if (product != null) {
-                    productId = product.getProductId();
-                    productName = product.getProductName();
-                    productMake = product.getProductMake();
-                    //productSpecification = product.getProductSpecification();
-                    productPrice = product.getProductPrice();
-                    availability = product.getAvailability();
-                }
-            } else {
-                int i = daoo.updateProduct(productId, productName, productMake, productPrice, availability);
-                if (i > 0) {
-                    msg = "Record Updated Successfuly";
+        if (getSessionMap().get("roleId") != null) {
+
+            setDaoo(new ProductService());
+            try {
+                if (getSubmitType().equals("updatedata")) {
+                    Products product = getDaoo().fetchProductDetails(getProductId());
+                    if (product != null) {
+                        setProductId(product.getProductId());
+                        setProductName(product.getProductName());
+                        setProductMake(product.getProductMake());
+                        productSpecification = product.getProductSpecification();
+                        setProductPrice(product.getProductPrice());
+                        setAvailability(product.getAvailability());
+                    }
                 } else {
-                    msg = "error";
+                    ctr = getDaoo().updateProduct(getProductId(), getProductName(), getProductMake(), productSpecification, getProductPrice(), getAvailability());
+                    if (ctr > 0) {
+                        setMsg("Record Updated Successfuly");
+                    } else {
+                        setMsg("error");
+                    }
                 }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            return "UPDATEPRODUCT";
+        } else {
+            return "LOGIN";
         }
-
-        return "UPDATEPRODUCT";
     }
+
     public String productDelete() throws Exception {
-        try {
-            int isDeleted = daoo.deleteProductDetails(getProductId());
-            if (isDeleted > 0) {
-                setMsg1("Record deleted successfully");
-                System.out.println("Product Deleted");
-            } else {
-                setMsg1("Some error");
-                System.out.println("Some error");
+
+        if (getSessionMap().get("roleId") != null) {
+
+            try {
+                int isDeleted = getDaoo().deleteProductDetails(getProductId(), getStatus());
+                if (isDeleted > 0) {
+                    setMsg1("Record deleted successfully");
+                    System.out.println("Product Deleted");
+                } else {
+                    setMsg1("Some error");
+                    System.out.println("Some error");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return "REDIRECTPRODUCT";
+        } else {
+            return "LOGIN";
         }
-        return "DELETEPRODUCT";
-}
+    }
 
+    public String cartSize() {
+        if (getSessionMap().get("roleId") != null) {
 
+            System.out.println(productId);
+            System.out.println(quantity);
+            //setCart(getProductService().itemsInCart(getProductId(), getQuantity()));
+            //System.out.println(cart);
+            return "ITEMSINCART";
+        } else {
+            return "LOGIN";
+        }
+    }
+
+    public String addProduct() throws Exception {
+        return "ADDPRODUCT";
+    }
+
+    public String registerProduct() throws Exception {
+        productService = new ProductService();
+
+        setCtr(productService.addProduct(productName, productMake, productSpecification, productPrice, availability));
+        System.out.println(productName);
+        System.out.println(productMake);
+        System.out.println(productSpecification);
+        System.out.println(productPrice);
+        System.out.println(availability);
+        if (getCtr() > 0) {
+            setMsg("One Product Added Successfully");
+            System.out.println("One Product Added Successfull");
+        } else {
+            setMsg("Some error");
+        }
+        return "ADDPRODUCT";
+    }
+
+    public String fileUploadFromPC() throws Exception {
+        productService = new ProductService();
+        System.out.println(getFileName());
+        setCtr(productService.uploadFile(getFileName()));
+//        int done= myFile.uploadFile(fileName);
+        if (getCtr() > 0) {
+            System.out.println("File upload successfully..");
+        } else {
+            System.out.println("File Not uploaded");
+        }
+
+        return "ADDPRODUCT";
+    }
 
     /**
      * @return the productId
@@ -231,20 +357,6 @@ public class ProductAction extends UserAction {
      */
     public void setAvailability(int availability) {
         this.availability = availability;
-    }
-
-    /**
-     * @return the status
-     */
-    public boolean isStatus() {
-        return status;
-    }
-
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     /**
@@ -427,5 +539,36 @@ public class ProductAction extends UserAction {
      */
     public void setMsg1(String msg1) {
         this.msg1 = msg1;
+    }
+
+    /**
+     * @return the cart
+     */
+    /**
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @param quantity the quantity to set
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * @return the fileName
+     */
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
+     * @param fileName the fileName to set
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

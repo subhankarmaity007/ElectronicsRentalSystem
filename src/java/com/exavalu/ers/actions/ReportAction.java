@@ -34,7 +34,7 @@ public class ReportAction extends UserAction {
 
     
     
-    public String mostReport() throws Exception {
+   public String mostReport() throws Exception {
 
         setReportService(new ReportService());
          System.out.println("Most Ordered report action");
@@ -43,7 +43,7 @@ public class ReportAction extends UserAction {
       
             setMostOrderedList(new ArrayList<>());
             setMostOrderedList(getReportService().mostOrderedProduct());
-            System.out.println(mostOrderedList);
+            System.out.println(getMostOrderedList());
             
             setProductList(new ArrayList<>());
             setProductList(getReportService().outOfStock());
@@ -59,6 +59,14 @@ public class ReportAction extends UserAction {
                 setNoData(true);
             }
             return "MOSTORDERED";
+        
+    }
+    
+    
+   public String aboutUs() throws Exception {
+
+        
+            return "ABOUTUS";
         
     }
     /**
